@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        
+        {
+            "type": "pwa-msedge",
+            "name": "https://github.com/marieprincecc/mariebouyssou.orinoco-retro.git",
+            "request": "launch",
+            "url": "https://github.com/marieprincecc/mariebouyssou.orinoco-retro.git"
+        }
+    ]
+}
