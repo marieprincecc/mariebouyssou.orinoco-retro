@@ -13,23 +13,48 @@
     <title>Orinoco Retro</title>
 </head>
 <body>
-    <div class="container">
-
-        <!--header-->
-        <div class="row"> 
-            <div class="col">
-                <!--titre logo, nav bar-->
+    <!--header-->
+    <div class="bg-dark">
+        <div class="container">
+            <div class="row"> 
+                <div class="col">
+                    <!--titre logo, nav bar-->
+                    <nav class="col navbar navbar-expand-md navbar-dark">
+                        <a class="navbar-brand" href="index.html">Orinoco Retro</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
+                            <span class="navbar-toggler-icon"></span>
+                         </button>
+                         <div id="navbarContent" class="collapse navbar-collapse">
+                        <ul class="navbar-nav">
+                           <li class="nav-item active">
+                              <a class="nav-link" href="index.html">Acceuil</a>
+                           </li>
+                           <li class="nav-item">
+                            <a class="nav-link" href="index.html#produits">Produits</a>
+                         </li>
+                           <li class="nav-item">
+                              <a class="nav-link" href="index.html#presentation">Qui sommes nous?</a>
+                           </li>
+                           <li class="nav-item">
+                            <a class="nav-link" href="html/panier.html">Panier</a>
+                         </li>
+                        </ul>
+                    </div>
+                    </nav>
+                </div>
             </div>
         </div>
-        <!--END header-->
+    </div>
+    <!--END header-->
 
-        <!--main-->
+    <!--main-->
+    <div class="container">
         <div class="row">
             <div class="col">
                 <!--image plus texte deco-->
             </div>
         </div>
-        <div class="row"> <!--premiere ligne 3 produits-->
+        <div class="row" id="produits"> <!--premiere ligne 3 produits-->
             <div class="col-12 col-md-6 col-lg-4 ">info card</div>
             <div class="col-12 col-md-6 col-lg-4 ">info card</div>
             <div class="col-12 col-md-6 col-lg-4 ">info card</div>
@@ -41,7 +66,7 @@
         </div>
         <div class="row">
             <div class="col">
-                <p>Nous sommes une nouvelle plateforme d’e-commerce mettant a votre disposition plusieur applications thématiques ne vendant 
+                <p id="presentation">Nous sommes une nouvelle plateforme d’e-commerce mettant a votre disposition plusieur applications thématiques ne vendant 
                     qu’un seul groupe de produits. N’hesitez pas a aller voir nos autres produits, <!--liens vers autres appli--> Oribook, Oritextil <!--liens vers autres appli--> </p>
             </div>
         </div>
