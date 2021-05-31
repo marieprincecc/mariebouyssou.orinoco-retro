@@ -23,8 +23,15 @@ const elt= () =>{
      
        
 }} 
-    
-
+   produit(); 
+   
+const toutElt=()=>{
+    for (let i = 0; i < 5; i++) {
+       
+produit(i)
+        
+    }
+}
 console.log(elt);
 
-produit();
+toutElt();
