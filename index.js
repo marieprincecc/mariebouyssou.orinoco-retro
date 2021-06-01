@@ -13,38 +13,34 @@ let prixProduit= value[i].price;
 
 console.log(url, nomCam,prixProduit);
 
-let imgCam = document.getElementById("appareil"+i);
-imgCam.setAttribute("src",url);
-    
-   
-   
-
-
-  
-  let titre = document.getElementById("titre"+i);
-  titre.innerHTML += nomCam; 
- console.log(nomCam);
-
-
-
-    
- 
-    let prix = document.getElementById("prix"+i);
-    prix.innerHTML += prixProduit+"€";
+produitImg(value,i);
+produitNom(value,i); 
+produitPrice(value,i);
 
 })
-
 
 .catch(function(err) {
     console.log("une erreure est survenue"); //reponse en cas d'erreur
     console.log(err);
 })}
 
+const produitImg= (value, i) =>{
+    let url= value[i].imageUrl;
+    let imgCam = document.getElementById("appareil"+i);
+    imgCam.setAttribute("src",url);
+}
 
+const produitNom= (value,i) =>{
+    let nomCam= value[i].name;  
+    let titre = document.getElementById("titre"+i);
+    titre.innerHTML += nomCam; 
+}
 
-
-
-
+const produitPrice= (value,i) =>{
+    let prixProduit= value[i].price;
+    let prix = document.getElementById("prix"+i);
+    prix.innerHTML += prixProduit+"€";
+}
 
 
 
@@ -55,11 +51,6 @@ const elt= () =>{
      
        
 }} 
-
-
-
-
-
 
 const toutElt=()=>{
     for (let i = 0; i < 5; i++) {
