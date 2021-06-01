@@ -12,7 +12,7 @@ let nomCam= value[i].name;
 let prixProduit= value[i].price;
 
 console.log(url, nomCam,prixProduit);
-
+                                        //execution des fonctions
 produitImg(value,i);
 produitNom(value,i); 
 produitPrice(value,i);
@@ -24,27 +24,32 @@ produitPrice(value,i);
     console.log(err);
 })}
 
-const produitImg= (value, i) =>{
+const produitImg= (value, i) =>{            //affiche les images 
     let url= value[i].imageUrl;
     let imgCam = document.getElementById("appareil"+i);
     imgCam.setAttribute("src",url);
 }
 
-const produitNom= (value,i) =>{
+const produitNom= (value,i) =>{             //affiche le nom
     let nomCam= value[i].name;  
     let titre = document.getElementById("titre"+i);
     titre.innerHTML += nomCam; 
 }
 
-const produitPrice= (value,i) =>{
+const produitPrice= (value,i) =>{              //affiche le prix
     let prixProduit= value[i].price;
     let prix = document.getElementById("prix"+i);
     prix.innerHTML += prixProduit+"€";
 }
 
+const toutElt=()=>{                     //boucle produit
+    for (let i = 0; i < 5; i++) {
+        produit(i)
+    }
+}
 
 
-const elt= () =>{
+const elt= () =>{                       // crée le html en fonction du nombre d'article
     for (let i=0; i<6; i++){
         let row= document.getElementById("rowProduit");
        
@@ -52,11 +57,7 @@ const elt= () =>{
        
 }} 
 
-const toutElt=()=>{
-    for (let i = 0; i < 5; i++) {
-        produit(i)
-    }
-}
 
 
-toutElt();
+
+toutElt();      //execute toutElt
