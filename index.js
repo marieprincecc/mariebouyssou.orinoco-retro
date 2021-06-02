@@ -48,16 +48,69 @@ const toutElt=()=>{                     //boucle produit
     }
 }
 
+const createLodgingCardTitle=(i)=>{
 
-const elt= () =>{                       // crée le html en fonction du nombre d'article
-    for (let i=0; i<6; i++){
-        let row= document.getElementById("rowProduit");
-       
-     
-       
-}} 
+    const cardTitle=document.createElement('h4');
+    cardTitle.classList.add('card-title');
+    cardTitle.id="titre"+i;
+    return cardTitle;
+}
+const createLodgingCardText=(i)=>{
+    const cardText=document.createElement("p");
+    cardText.classList.add("card-text");
+    cardText.id="prix"+i;
+    return cardText;
+}
+const createLodgingImg=(i)=>{
+    const image= document.createElement('img');
+    image.classList.add('card-img-top');
+    image.id= "appareil"+i;
+    return image;
+}
 
+const createLodgingCardBody=()=>{
+    const cardBody= document.createElement('div');
+    cardBody.classList.add("card-body"+"text-center");
 
+    const cardTitle= createLodgingCardTitle();
+    cardBody.appendChild(cardTitle);
 
+    const cardText= createLodgingCardText();
+    cardBody.appendChild(cardText);
+
+    return cardBody;
+}
+
+const createLodgingCard=()=>{
+    const card= document.createElement('card');
+    card.classList.add('card');
+
+    const image= createLodgingImg();
+    card.appendChild(image);
+
+    const cardBody= createLodgingCardBody();
+    card.appendChild(cardBody);
+
+    return card;
+}
+
+const createLodgingCol=()=>{
+    const col= document.createElement('div');
+    col.classList.add("col-12"+"col-md-6"+"col-lg-4");
+
+    const card= createLodgingCard();
+    col.appendChild(card);
+    return col;
+}
+
+const elt= () =>{ 
+      // crée le html en fonction du nombre d'article
+for (let i=0; i<6; i++){
+    let row= document.getElementById("rowProduit");
+    const col= createLodgingCol(i);
+    row.appendChild(col);
+}}
+
+elt();
 
 toutElt();      //execute toutElt
