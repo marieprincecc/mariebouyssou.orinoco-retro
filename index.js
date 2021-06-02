@@ -48,25 +48,27 @@ const toutElt=()=>{                     //boucle produit
     }
 }
 
-const createLodgingCardTitle=(i)=>{
-
+const createLodgingCardTitle=()=>{
+    for (let i=0; i<6; i++){
     const cardTitle=document.createElement('h4');
     cardTitle.classList.add('card-title');
     cardTitle.id="titre"+i;
     return cardTitle;
-}
-const createLodgingCardText=(i)=>{
+}}
+const createLodgingCardText=()=>{
+    for (let i=0; i<6; i++){
     const cardText=document.createElement("p");
     cardText.classList.add("card-text");
     cardText.id="prix"+i;
     return cardText;
-}
-const createLodgingImg=(i)=>{
+}}
+const createLodgingImg=()=>{
+    for (let i=0; i<6; i++){
     const image= document.createElement('img');
     image.classList.add('card-img-top');
     image.id= "appareil"+i;
     return image;
-}
+}}
 
 const createLodgingCardBody=()=>{
     const cardBody= document.createElement('div');
@@ -102,13 +104,16 @@ const createLodgingCol=()=>{
     col.appendChild(card);
     return col;
 }
+const insereCol=()=>{
+    let row= document.getElementById("rowProduit");
+    const col= createLodgingCol();
+    row.appendChild(col);
+}
 
 const elt= () =>{ 
       // crée le html en fonction du nombre d'article
 for (let i=0; i<6; i++){
-    let row= document.getElementById("rowProduit");
-    const col= createLodgingCol(i);
-    row.appendChild(col);
+   insereCol(i)
 }}
 
 elt();
