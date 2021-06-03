@@ -45,6 +45,16 @@ const produitPrice= (value,i) =>{              //affiche le prix
     prix.innerHTML += prixProduit+"€";
 }
 
+const produitDescription=(value,i)=>{
+    let descriptionProduit= value[i].description;
+    let description = document.getElementById("description"+i)
+    description.innerHTML += descriptionProduit;
+}
+const produitLense= () =>{
+    let lenseProduit= value[i].lenses;
+    let lenses =document.getElementById("lense")
+}
+
 const toutElt=()=>{                     //boucle produit
     for (let i = 0; i < 5; i++) {
         produit(i)
@@ -102,7 +112,7 @@ const createLodgingCardBody=(i)=>{
 }
 
 const createLodgingCard=(i)=>{
-    let card= document.createElement("card");
+    let card= document.createElement("div");
     card.classList.add("card");
 
     let image= createLodgingImg(i);
@@ -135,6 +145,10 @@ for (let i=0; i<5; i++){
    insereCol(i)
 
 }}
+
+const selectProduit= (i)=>{
+
+}
 
 elt();
 toutElt();      //execute toutElt
