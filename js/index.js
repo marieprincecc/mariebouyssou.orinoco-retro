@@ -10,10 +10,8 @@ fetch("http://localhost:3000/api/cameras") //appel des données a l'api
 let url= value[i].imageUrl;
 let nomCam= value[i].name;
 let prixProduit= value[i].price;
-let descriptionProduit= value[i].description;
-let lenseProduit= value[i].lenses;
 
-console.log(url, nomCam, prixProduit, descriptionProduit, lenseProduit);
+console.log(url, nomCam, prixProduit,);
 
                                         //execution des fonctions
 produitImg(value,i);
@@ -27,33 +25,6 @@ produitPrice(value,i);
     console.log(err);
 })}
 
-const produitImg= (value, i) =>{            //affiche les images 
-    let url= value[i].imageUrl;
-    let imgCam = document.getElementById("appareil"+i);
-    imgCam.setAttribute("src",url);
-}
-
-const produitNom= (value,i) =>{             //affiche le nom
-    let nomCam= value[i].name;  
-    let titre = document.getElementById("titre"+i);
-    titre.innerHTML += nomCam; 
-}
-
-const produitPrice= (value,i) =>{              //affiche le prix
-    let prixProduit= value[i].price;
-    let prix = document.getElementById("prix"+i);
-    prix.innerHTML += prixProduit+"€";
-}
-
-const produitDescription=(value,i)=>{
-    let descriptionProduit= value[i].description;
-    let description = document.getElementById("description"+i)
-    description.innerHTML += descriptionProduit;
-}
-const produitLense= () =>{
-    let lenseProduit= value[i].lenses;
-    let lenses =document.getElementById("lense")
-}
 
 const toutElt=()=>{                     //boucle produit
     for (let i = 0; i < 5; i++) {
