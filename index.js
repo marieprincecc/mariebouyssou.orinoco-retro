@@ -10,8 +10,11 @@ fetch("http://localhost:3000/api/cameras") //appel des données a l'api
 let url= value[i].imageUrl;
 let nomCam= value[i].name;
 let prixProduit= value[i].price;
+let descriptionProduit= value[i].description;
+let lenseProduit= value[i].lenses;
 
-console.log(url, nomCam,prixProduit);
+console.log(url, nomCam, prixProduit, descriptionProduit, lenseProduit);
+
                                         //execution des fonctions
 produitImg(value,i);
 produitNom(value,i); 
@@ -71,10 +74,11 @@ const createLodgingImg=(i)=>{
     
         return image;
 }
-const createLinkCard=()=>{
+const createLinkCard=(i)=>{
     let pageProduit= ("html/produit.html");
     let link= document.createElement("a");
-    link.classList.add("btn","btn-secondary","stretched-link")
+    link.classList.add("btn","btn-secondary","stretched-link");
+    link.id= ("linkProduit"+i)
     link.setAttribute("href",pageProduit);
     link.innerHTML="voir plus";
     
@@ -91,7 +95,7 @@ const createLodgingCardBody=(i)=>{
     let cardText= createLodgingCardText(i);
     cardBody.appendChild(cardText);
 
-    let link= createLinkCard();
+    let link= createLinkCard(i);
     cardBody.appendChild(link);
 
     return cardBody;
