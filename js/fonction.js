@@ -26,3 +26,20 @@ const produitLense= (value,i) =>{                      //affiche l'array des per
     let lenses =document.getElementById("persoProduit"+i);
     lenses.innerHTML += "Modèles disponibles: "+lenseProduit;
 }
+const createURL=(value,i)=>{
+    let idProduit= value[i]._id;
+    const URLProduit=(url,id)=> {
+        this.url=url,
+        this.id=id
+        return url+id
+    };
+    let URL = URLProduit("html/produit.html?id=",idProduit);
+    let link= document.getElementById("lienAppareil"+i);
+    link.setAttribute("href",URL)
+}
+//const idUnProduit= (value,i) =>{
+   // let idProduit= value[i]._id;
+    //let link= document.getElementById("lienAppareil"+i)
+    //let urlPage= ("html/produit.html/?id="+idProduit)
+   //link.setAttribute("href",urlPage)}
+

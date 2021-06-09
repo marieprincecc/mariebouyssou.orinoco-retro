@@ -1,22 +1,29 @@
-function produit(i){
-fetch("http://localhost:3000/api/cameras") //appel des données a l'api
-.then(function(res) {
-    if (res.ok) {
-        return res.json();
+function produit(){
+    fetch("http://localhost:3000/api/cameras") //appel des données a l'api
+        .then(function(res) {
+            if (res.ok) {
+                return res.json();
     }
 })
 .then(function(value) {
+  for (let i = 0; i < value.length; i++) {
+    let url= value[i].imageUrl;
+    let nomCam= value[i].name;
+    let prixProduit= value[i].price;
+    let idProduit= value[i]._id;
+
+    console.log(url, nomCam, prixProduit,idProduit);
+    
+    
+    insereCol(i)//execution des fonctions
+    produitImg(value,i);
+    produitNom(value,i); 
+    produitPrice(value,i);
+    createURL(value,i)
+   // idUnProduit (value,i);
+  }  
     console.log(value)
-let url= value[i].imageUrl;
-let nomCam= value[i].name;
-let prixProduit= value[i].price;
 
-console.log(url, nomCam, prixProduit,);
-
-                                        //execution des fonctions
-produitImg(value,i);
-produitNom(value,i); 
-produitPrice(value,i);
 
 })
 
@@ -55,16 +62,15 @@ const createLodgingImg=(i)=>{
     
         return image;
 }
+
 const createLinkCard=(i)=>{
-    let pageProduit= ("html/produit.html");
     let link= document.createElement("a");
-    link.classList.add("btn","btn-secondary","stretched-link");
-    link.id= ("linkProduit"+i)
-    link.setAttribute("href",pageProduit);
-    link.innerHTML="voir plus";
-    
+    link.classList.add("btn","btn-secondary","stretched-link","text-white");
+    link.id= ("lienAppareil"+i);   
+    link.innerHTML="voir plus";    
     return link;
 }
+
 
 const createLodgingCardBody=(i)=>{
     let cardBody= document.createElement("div");
@@ -121,5 +127,7 @@ const selectProduit= (i)=>{
 
 }
 
-elt();
-toutElt();      //execute toutElt
+//elt();
+//toutElt();      //execute toutElt
+produit()
+ 
