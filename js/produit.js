@@ -13,7 +13,7 @@ const produitSelect=()=>{
         })
         .then(function(value) {
              console.log(value)                         
-            produitImgSelect(value)          //execution des fonctions
+            produitImgSelect(value)          //appel des fonctions
             produitNomSelect(value)
             produitPriceSelect(value)
             produitDescriptionSelect(value)
@@ -54,4 +54,4 @@ const produitLenseSelect= (value) =>{                      //affiche l'array des
     lenses.innerHTML += "Modèles disponibles: "+lenseProduit;
 }
 
-produitSelect()                 //execute la fonction
+produitSelect()                 //appel la fonction produitSelect
