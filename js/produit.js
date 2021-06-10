@@ -2,7 +2,6 @@ const produitSelect=()=>{
    
     let params = new URLSearchParams(document.location.search.substring(1)); //récupère search dans l'url
     let id = params.get("id")                      //extrait l'id de l'url
-        console.log(id);
    
     fetch("http://localhost:3000/api/cameras/"+id) //appel des données a l'api
     
@@ -12,7 +11,7 @@ const produitSelect=()=>{
                 }
         })
         .then(function(value) {
-             console.log(value)                         
+                                    
             produitImgSelect(value)          //appel des fonctions
             produitNomSelect(value)
             produitPriceSelect(value)
