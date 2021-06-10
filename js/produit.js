@@ -13,10 +13,11 @@ const produitSelect=()=>{
         .then(function(value) {
                                     
             produitImgSelect(value)          //appel des fonctions
-            produitNomSelect(value)
             produitPriceSelect(value)
+            produitNomSelect(value)
             produitDescriptionSelect(value)
             produitLenseSelect(value)
+            createURLPanier()
         })
     
         .catch(function(err) {

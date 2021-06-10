@@ -38,4 +38,18 @@ const createURL=(value,i)=>{                            //fonction qui créer l'
     link.setAttribute("href",URL)
 }
 
+const createURLPanier=()=>{                            //fonction qui créer l'url vers le panier
+    const URLProduit=(url,id)=> {                      //constructor url
+        this.url=url,
+        this.id=id
+        return url+id
+    }
+    let params = new URLSearchParams(document.location.search.substring(1)); //récupère search dans l'url
+    let id = params.get("id")
+
+    let URL = URLProduit("panier.html?id=",id);        //nouvel objet
+    let link= document.getElementById("ajoutPanier");
+    link.setAttribute("href",URL)
+}
+
 
