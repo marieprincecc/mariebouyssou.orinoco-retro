@@ -18,6 +18,13 @@ const produitSelect=()=>{
             produitDescriptionSelect(value)
             produitLenseSelect(value)
             createURLPanier()
+            let prixProduit= value.price
+            let nomCamera= value.name
+            const produit={
+                nom:nomCamera,
+                prix:prixProduit
+            }
+            localStorage.setItem("prix",JSON.stringify(produit))
         })
     
         .catch(function(err) {
@@ -26,15 +33,15 @@ const produitSelect=()=>{
         })
 }
 const produitImgSelect= (value) =>{            //attribut l'url de l'image dans l'element #appareil 
-    let url= value.imageUrl;
-    let imgCam = document.getElementById("appareil");
-    imgCam.setAttribute("src",url);
+    let imageUrl= value.imageUrl;
+    let imgCamera = document.getElementById("appareil");
+    imgCamera.setAttribute("src",imageUrl);
 }
     
 const produitNomSelect= (value) =>{             //attribut le nom de la camera dans l'element #titre 
-    let nomCam= value.name;  
+    let nomCamera= value.name;  
     let titre = document.getElementById("titre");
-    titre.innerHTML += nomCam; 
+    titre.innerHTML += nomCamera; 
 }
     
 const produitPriceSelect= (value) =>{              //affiche le prix  dans l'element #prix
@@ -52,6 +59,9 @@ const produitLenseSelect= (value) =>{                      //affiche l'array des
     let lenseProduit= value.lenses;
     let lenses =document.getElementById("persoProduit");
     lenses.innerHTML += "Modèles disponibles: "+lenseProduit;
-}
-
+}   
+ 
 produitSelect()                 //appel la fonction produitSelect
+
+
+

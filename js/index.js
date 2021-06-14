@@ -108,4 +108,3 @@ const insereCol=(i)=>{                          //place la div col a sa place da
 }
 
 produit()           //appel la fonction produit
- 

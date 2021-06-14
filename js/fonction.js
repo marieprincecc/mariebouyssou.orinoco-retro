@@ -1,13 +1,13 @@
 const produitImg= (value, i) =>{            //attribut l'url de l'image dans l'element #appareil +i correspondant
-    let url= value[i].imageUrl;
-    let imgCam = document.getElementById("appareil"+i);
-    imgCam.setAttribute("src",url);
+    let imageUrl= value[i].imageUrl;
+    let imgCamera = document.getElementById("appareil"+i);
+    imgCamera.setAttribute("src",imageUrl);
 }
 
 const produitNom= (value,i) =>{             //attribut le nom de la camera dans l'element #titre +i correspondant
-    let nomCam= value[i].name;  
+    let nomCamera= value[i].name;  
     let titre = document.getElementById("titre"+i);
-    titre.innerHTML += nomCam; 
+    titre.innerHTML += nomCamera; 
 }
 
 const produitPrice= (value,i) =>{              //affiche le prix  dans l'element #prix +i correspondant
