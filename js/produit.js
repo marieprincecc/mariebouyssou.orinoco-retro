@@ -24,7 +24,7 @@ const produitSelect=()=>{
                 nom:nomCamera,
                 prix:prixProduit
             }
-            localStorage.setItem("prix",JSON.stringify(produit))
+            localStorage.setItem("produit",JSON.stringify(produit))
         })
     
         .catch(function(err) {
