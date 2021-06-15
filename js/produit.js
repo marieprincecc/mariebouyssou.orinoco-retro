@@ -11,13 +11,14 @@ const produitSelect=()=>{
                 }
         })
         .then(function(value) {
-                                    
+                      
             produitImgSelect(value)          //appel des fonctions
             produitPriceSelect(value)
             produitNomSelect(value)
             produitDescriptionSelect(value)
-            produitLenseSelect(value)
             createURLPanier()
+            optionProduit(value)
+
             let prixProduit= value.price
             let nomCamera= value.name
             const produit={
@@ -25,8 +26,8 @@ const produitSelect=()=>{
                 prix:prixProduit
             }
             localStorage.setItem("produit",JSON.stringify(produit))
+        
         })
-    
         .catch(function(err) {
             console.log("une erreure est survenue"); //reponse en cas d'erreur
             console.log(err);                          //affiche l'erreure dans la console
@@ -55,13 +56,20 @@ const produitDescriptionSelect=(value)=>{            //affiche la description  d
     let description = document.getElementById("description");
      description.innerHTML += descriptionProduit;
 }
-const produitLenseSelect= (value) =>{                      //affiche l'array des personnalisations  dans l'element #persoProduit
-    let lenseProduit= value.lenses;
-    let lenses =document.getElementById("persoProduit");
-    lenses.innerHTML += "Modèles disponibles: "+lenseProduit;
-}   
  
-produitSelect()                 //appel la fonction produitSelect
+const optionProduit=(value)=>{
+    let arrayOption = value.lenses;
+    for (let i = 0; i < arrayOption.length; i++){
+        let option= arrayOption[i]
+        let value1= document.getElementById("1");
+        let value2= document.getElementById("2");
+        let value3= document.getElementById("3");
+        value1.innerHTML+=arrayOption[0]
+        value2.innerHTML+= arrayOption[1]
+        value3.innerHTML+=arrayOption[2]
+    }
+    
+}
 
 
-
+produitSelect();                 //appel la fonction 
