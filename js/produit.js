@@ -21,9 +21,11 @@ const produitSelect=()=>{
 
             let prixProduit= value.price
             let nomCamera= value.name
+            let imgCamera= value.imageUrl
             const produit={
                 nom:nomCamera,
-                prix:prixProduit
+                prix:prixProduit,
+                img:imgCamera
             }
             localStorage.setItem("produit",JSON.stringify(produit))
         

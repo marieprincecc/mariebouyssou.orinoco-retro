@@ -3,12 +3,14 @@ if ( local!=null) {
     
     let prix= local.prix
     let nom= local.nom
+    let img= local.img
     let qte= 1
 
    const objet = new LignePanier(nom,qte,prix);
    console.log(objet);
-
-   document.getElementById("prix").textContent = "Prix: "+(objet.prixArticle)+"€ "+" Article:  "+(objet.nomArticle)+"   quantité:  "+(objet.qteArticle)
+    document.getElementById("image").setAttribute("src",img)
+    document.getElementById("titre").textContent= objet.nomArticle
+   document.getElementById("prix").textContent = objet.prixArticle +"€ "
 }
 
 function LignePanier (nom, qte, prix)           //objet lignePanier 

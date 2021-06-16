@@ -61,21 +61,66 @@
         </div>
     </div>
     <div class="container">
-        <div class="row mt-3">
-            <div class="col-12 col-md-3" id="imgProduitSelect">
-                <img class="img-fluid" id="appareil"  >
-            </div>
-            <div class="col-12 col-md-9 mt-5" id="infoProduitSelect">
-               <p id="prix"></p>
-            </div>
-            <button><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-                <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
-              </svg></button>
-        </div>
-        <div class="row">
-            <div class="col text-center">
-                <div class="btn btn-secondary mt-3">Valider mon panier</div>
-            </div>
+        <div class="row mt-3"> <!--ligne contenant col panier et col formulaire-->
+            <div class="col-12 col-lg-8"> <!--col contenant row et col detail panier-->
+                <div class="row"> 
+                    <div class="col-3">
+                        <img class="img-thumbnail w-auto" id="image">
+                    </div>
+                    <div class="col-4">
+                        <span class="h2" id="titre"></span><br>
+                        <span class="h3" id="prix"></span>
+                    </div>
+                    <div class="col-2"id="qte">
+                        <select class="form-select">
+                            <option selected>Quantité</option>
+                            <option value="0" >0</option>
+                            <option value="1" >1</option>
+                            <option value="2" >2</option>
+                            <option value="3" >3</option>
+                            <option value="4" >4</option>
+                            <option value="5" >5</option>
+                            <option value="6" >6</option>
+                            <option value="7" >7</option>
+                            <option value="8" >8</option>
+                          </select>
+                    </div>
+                    <div class="col-2"id="sousTotal">test prix total</div>
+                    <div class="col-1"id="supprimer">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                          </svg>
+                    </div>
+                </div>
+            </div> 
+           <div class="col-12 col-lg-4">  <!--col formulaire-->
+                <form class="form-control">
+                    <input type="radio" name="gender" value="Mme"> Mme 
+                    <input type="radio" name="gender" value="Mr"> Mr <br>  <!--radio mr madame-->
+
+                    <label for="name" class="form-label">Nom Prenom</label> <!--identité-->
+                    <input type="name" class="form-control" id="name" placeholder="Nom Prenom" required>
+
+                    <label for="dateDeNaissance" class="form-label">Date de naissance</label> <!--date de naissance-->
+                    <input type="date" value="01/01/2000" min="1910-01-01" max="2021-01-01"class="form-control" id="dateDeNaissance" placeholder="ex: jj/mm/aaaa" required>
+
+                    <label for="email" class="form-label">e-mail</label> <!--email-->
+                    <input type="email" class="form-control" id="email" placeholder="ex: votremail@mail.com" required>
+
+                    <label for="adresse" class="form-label">Adresse de livraison</label> <!--adresse-->
+                    <input type="text" class="form-control" id="adresse" placeholder="Adresse ligne 1" required>
+                    <input type="text" class="form-control" id="adresse" placeholder="adresse ligne 2"> <!--2eme ligne adresse facultatif-->
+
+                    <label for="codePostal" class="form-label">Code postal</label> <!--code postal-->
+                    <input type="number" class="form-control" id="codePostal" placeholder="ex:75001" required>
+
+                    <label for="ville" class="form-label">Ville</label> <!--ville-->
+                    <input type="text" class="form-control" id="ville" placeholder="ex:Paris" required>
+
+                    <input class="btn-secondary mt-3"  type="submit" value="Valider mon panier"> <!--envoi-->
+            </form> 
+           </div> 
         </div>
         
     </div>
