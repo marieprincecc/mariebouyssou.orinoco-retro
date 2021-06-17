@@ -1,23 +1,27 @@
 const local= JSON.parse(localStorage.getItem("produit"))
-if ( local!=null) {
+const panier= JSON.parse(localStorage.getItem("panier"))
+if ( panier!=null) {
     
     let prix= local.prix
     let nom= local.nom
     let img= local.img
     let qte= 1
 
-   const objet = new LignePanier(nom,qte,prix);
-   console.log(objet);
+   const objet = new LignePanier(nom,qte,prix,img);
+   panier.push(objet);
+   console.log(panier);
+   localStorage.setItem("panier",JSON.stringify(panier))
     document.getElementById("image").setAttribute("src",img)
     document.getElementById("titre").textContent= objet.nomArticle
    document.getElementById("prix").textContent = objet.prixArticle +"€ "
 }
 
-function LignePanier (nom, qte, prix)           //objet lignePanier 
+function LignePanier (nom, qte, prix,img)           //objet lignePanier 
 {
     this.nomArticle = nom;
     this.qteArticle = qte;
     this.prixArticle = prix;
+    this.img= img;
     this.ajouterQte = function(qte)
     {
         this.qteArticle += qte;                         //ajoute la quatité a quantité

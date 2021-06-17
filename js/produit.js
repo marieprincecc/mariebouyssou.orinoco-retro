@@ -29,24 +29,21 @@ const produitSelect=()=>{
                 img:imgCamera,
                 qte:1
             }
-            const panier=[
-                this.produit= produit
-            ]
-            
-          
-           
-
+            const panier=[]            
+            if ( panier==null) {
 		    localStorage.setItem("panier",JSON.stringify(panier))
-            localStorage.setItem("produit",JSON.stringify(produit))
-            
-        
-        
+            localStorage.setItem("produit",JSON.stringify(produit))}
+            else{
+                localStorage.setItem("produit",JSON.stringify(produit))
+            }
+
         })
         .catch(function(err) {
             console.log("une erreure est survenue"); //reponse en cas d'erreur
             console.log(err);                          //affiche l'erreure dans la console
         })
-}
+    }
+
 const produitImgSelect= (value) =>{            //attribut l'url de l'image dans l'element #appareil 
     let imageUrl= value.imageUrl;
     let imgCamera = document.getElementById("appareil");
