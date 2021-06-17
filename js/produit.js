@@ -18,16 +18,28 @@ const produitSelect=()=>{
             produitDescriptionSelect(value)
             createURLPanier()
             optionProduit(value)
-
+            
+            
             let prixProduit= value.price
             let nomCamera= value.name
             let imgCamera= value.imageUrl
             const produit={
                 nom:nomCamera,
                 prix:prixProduit,
-                img:imgCamera
+                img:imgCamera,
+                qte:1
             }
+            const panier=[
+                this.produit= produit
+            ]
+            
+          
+           
+
+		    localStorage.setItem("panier",JSON.stringify(panier))
             localStorage.setItem("produit",JSON.stringify(produit))
+            
+        
         
         })
         .catch(function(err) {
@@ -87,6 +99,7 @@ const optionProduit=(value)=>{              //boucle pour cree une ligne par opt
     }
     
 }
+
 
 
 produitSelect();                 //appel la fonction 

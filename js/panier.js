@@ -33,31 +33,3 @@ function LignePanier (nom, qte, prix)           //objet lignePanier
     }
 }
 
-function Panier()                                           //objet panier
-{
-    this.liste = [];
-    this.ajouterArticle = function(nom, qte, prix)
-    { 
-        var index = this.getArticle(nom);
-        if (index == -1) this.liste.push(new LignePanier(nom, qte, prix));
-        else this.liste[index].ajouterQte(qte);
-    }
-    this.getPrixPanier = function()
-    {
-        var total = 0;
-        for(var i = 0 ; i < this.liste.length ; i++)
-            total += this.liste[i].getPrixLigne();
-        return total;
-    }
-    this.getArticle = function(nom)
-    {
-        for(var i = 0 ; i <this.liste.length ; i++)
-            if (code == this.liste[i].getNom()) return i;
-        return -1;
-    }
-    this.supprimerArticle = function(nom)
-    {
-        var index = this.getArticle(nom);
-        if (index > -1) this.liste.splice(index, 1);
-    }
-}
