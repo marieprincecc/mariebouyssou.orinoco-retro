@@ -14,6 +14,8 @@ if ( panier!=null) {
     document.getElementById("image").setAttribute("src",img)
     document.getElementById("titre").textContent= objet.nomArticle
    document.getElementById("prix").textContent = objet.prixArticle +"€ "
+
+  
 }
 
 function LignePanier (nom, qte, prix,img)           //objet lignePanier 
@@ -37,74 +39,74 @@ function LignePanier (nom, qte, prix,img)           //objet lignePanier
     }
 }
 
-const createRowPanier=()=>{
+const createRowPanier=(i)=>{
 
     let row=document.createElement("div")
     row.classList.add("row")
-    row.id=("rowPanier")
+    row.id=("rowPanier"+i)
 
     return row
 }
 
-const createColImagePanier=()=>{
+const createColImagePanier=(i)=>{
 
     let colImgPanier=document.createElement("div")
     colImgPanier.classList.add("col-3")
-    colImgPanier.id=("colImg")
+    colImgPanier.id=("colImg"+i)
 
     return colImgPanier
 }
 
-const createImgPanier=()=>{
+const createImgPanier=(i)=>{
     
     let imgPanier=document.createElement("img")
     imgPanier.classList.add("img-thumbnail","w-auto")
-    imgPanier.id=("image")
+    imgPanier.id=("image"+i)
 
     return imgPanier
 }
 
-const createColProduit=()=>{
+const createColProduit=(i)=>{
 
     let colProduit=document.createElement("div")
     colProduit.classList.add("col-4")
-    colProduit.id=("colPrixTitre")
+    colProduit.id=("colPrixTitre"+i)
 
     return colProduit
 }
 
-const createTitre=()=>{
+const createTitre=(i)=>{
 
     let titreProduit=document.createElement("span")
     titreProduit.classList.add("h2")
-    titreProduit.id=("titre")
+    titreProduit.id=("titre"+i)
 
     return titreProduit
 }
 
-const createPrix=()=>{
+const createPrix=(i)=>{
 
     let prixProduit=document.createElement("span")
     prixProduit.classList.add("h3")
-    prixProduit.id=("prix")
+    prixProduit.id=("prix"+i)
 
     return prixProduit
 }
 
-const createcolQTE=()=>{
+const createcolQTE=(i)=>{
 
     let colQTE=document.createElement("div")
     colQTE.classList.add("col-2")
-    colQTE.id=("qte")
+    colQTE.id=("qte"+i)
 
     return colQTE
 }
 
-const createSelect=()=>{
+const createSelect=(i)=>{
 
     let formSelect=document.createElement("select")
     formSelect.classList.add("form-select")
-    formSelect.id=("form-select")
+    formSelect.id=("form-select"+i)
 
     return formSelect
 }
@@ -127,40 +129,40 @@ const createOption=()=>{
         return option        
 }
 
-const createSousTotal=()=>{
+const createSousTotal=(i)=>{
 
     let SousTotal=document.createElement("div")
     SousTotal.classList.add("col-2")
-    SousTotal.id=("sousTotal")
+    SousTotal.id=("sousTotal"+i)
 
     return SousTotal
 }
 
-const createSupprimer=()=>{
+const createSupprimer=(i)=>{
 
     let corbeil=document.createElement("div")
     corbeil.classList.add("col-1")
-    corbeil.id=("supprimer")
+    corbeil.id=("supprimer"+i)
     let logo= (' <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">'
    )
 
   corbeil.innerHTML+= logo
 }
 
-const createLigneComplete =()=>{
+const createLigneComplete =(i)=>{
 
-    let row = createRowPanier()
-    let colImg = createColImagePanier()
-    let imgPanier = createImgPanier()
-    let colProduit = createColProduit()
-    let titre = createTitre()
-    let prix = createPrix()
-    let divQTE = createcolQTE()
-    let select = createSelect()
+    let row = createRowPanier(i)
+    let colImg = createColImagePanier(i)
+    let imgPanier = createImgPanier(i)
+    let colProduit = createColProduit(i)
+    let titre = createTitre(i)
+    let prix = createPrix(i)
+    let divQTE = createcolQTE(i)
+    let select = createSelect(i)
     let optionSelect = createOptionQTE()
     let option = createOption()
-    let sousTotal = createSousTotal()
-    let supprimer = createSupprimer()
+    let sousTotal = createSousTotal(i)
+    let supprimer = createSupprimer(i)
 
     colImg.appendChild(imgPanier)
     colProduit.appendChild(titre, prix)
