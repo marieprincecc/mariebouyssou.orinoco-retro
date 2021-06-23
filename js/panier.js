@@ -156,6 +156,15 @@ const createPlacePrix= (panier,i) =>{              //affiche le prix  dans l'ele
     prix.textContent = prixArticle +"€ "
 }
 
+let toutSupprimer = document.getElementById("corbeil")          //tout supprimer du panier dans storage
+toutSupprimer.addEventListener("click",(e)=>{
+e.preventDefault
+localStorage.removeItem("panier")
+alert("Votre panier est vide")
+window.location.reload()
+})
+
+
 let prixTotalPanier=[]
 
 monPanier()
