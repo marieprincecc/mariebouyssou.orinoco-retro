@@ -3,6 +3,7 @@ function panier() {
 
 const local= JSON.parse(localStorage.getItem("produit"))
 const panier= JSON.parse(localStorage.getItem("panier"))
+console.log(panier);
 
 if ( panier!=null) {
     
@@ -12,10 +13,12 @@ if ( panier!=null) {
     let qte= 1
 
    const objet = new LignePanier(nom,qte,prix,img);
-   
+   console.log(objet);
    //console.log(objet);
-   panier.push(objet);
-   console.log(panier[0].nomArticle);
+  
+    panier.push(objet);
+
+  
    localStorage.setItem("panier",JSON.stringify(panier))
    
   
@@ -24,9 +27,13 @@ if ( panier!=null) {
     createImg(panier,i)
     nomArticle(panier,i)
     createPlacePrix(panier,i)
+    affichageQte(panier,i)
    }
+} else {
+   panierVide()
 }
 }
+
   function LignePanier (nom, qte, prix,img)           //objet lignePanier 
 {
     this.nomArticle = nom;
@@ -46,6 +53,15 @@ if ( panier!=null) {
     {
         return this.nomArticle;                                     //nom de l'article
     }
+}
+
+const panierVide=()=>{                                  //affichage panier vide
+        let p = document.createElement("p")
+        p.classList.add("h2", "text-center")
+        p.innerHTML= "Votre panier est vide"
+        let detailPanier = document.getElementById("detailPanier")
+        detailPanier.appendChild(p)
+       
 }
 
 const createRowPanier=(i)=>{                    //creation ligne de panier
@@ -197,4 +213,11 @@ const createPlacePrix= (panier,i) =>{              //affiche le prix  dans l'ele
     prix.textContent = prixArticle +"€ "
     console.log(prixArticle);
 }
+
+const affichageQte =(panier,i)=>{
+    let qteArticle= panier[i].qteArticle
+    let qte = document.getElementById("qte"+i)
+    qte.innerHTML += qteArticle
+}
+
 panier()

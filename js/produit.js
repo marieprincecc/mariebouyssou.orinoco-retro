@@ -30,10 +30,10 @@ const produitSelect=()=>{
                 qte:1
             }
             const panier=[]     
-            
+            console.log(panier);
             if (localStorage.panier) {
             localStorage.setItem("produit",JSON.stringify(produit))
-            panier.push(produit)
+            //panier.push(produit)
            }
             else{
                 localStorage.setItem("panier",JSON.stringify(panier))  
