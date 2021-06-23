@@ -78,7 +78,7 @@ const createImgPanier=(i)=>{                        // creation balise img panie
 const createColProduit=(i)=>{                       //creation div contenant titre et prix
 
     let colProduit=document.createElement("div")
-    colProduit.classList.add("col-8")
+    colProduit.classList.add("col-4")
     colProduit.id=("colPrixTitre"+i)
 
     return colProduit
@@ -110,6 +110,17 @@ const createPrix=(i)=>{                     //creation span prix
     return prixProduit
 }
 
+
+const createBtnSupProduit=(i)=>{                       //creation div contenant titre et prix
+
+    let btnSupProduit=document.createElement("button")
+    btnSupProduit.classList.add("col-4","btn","btn-secondary")
+    btnSupProduit.id=("btnSupProduit"+i)
+    btnSupProduit.textContent = "Retirer du panier"
+
+    return btnSupProduit
+}
+
 const createLigneComplete =(i)=>{       //appel des fonction pour crée toute la ligne 
 
     let row = createRowPanier(i)
@@ -119,7 +130,7 @@ const createLigneComplete =(i)=>{       //appel des fonction pour crée toute la
     let liste = createListe(i)
     let titre = createTitre(i)
     let prix = createPrix(i)
-    
+    let btnSupProduit = createBtnSupProduit(i)
 
     colImg.appendChild(imgPanier)
     colProduit.appendChild(liste)
@@ -127,6 +138,7 @@ const createLigneComplete =(i)=>{       //appel des fonction pour crée toute la
     liste.appendChild(prix)
     row.appendChild(colImg)
     row.appendChild(colProduit)
+    row.appendChild(btnSupProduit)
    
     return row
 }
@@ -159,12 +171,19 @@ const createPlacePrix= (panier,i) =>{              //affiche le prix  dans l'ele
 let toutSupprimer = document.getElementById("corbeil")          //tout supprimer du panier dans storage
 toutSupprimer.addEventListener("click",(e)=>{
 e.preventDefault
-localStorage.removeItem("panier")
+localStorage.clear()
 alert("Votre panier est vide")
 window.location.reload()
 })
 
-
+const verifFormulaire=()=> {
+    let prenom= document.getElementById("firstname")
+    let nom= document.getElementById("lastname")
+    let dateDeNaissance=document.getElementById("dateDeNaissance")
+    let adress = document.getElementById("adresse")
+    let city = document.getElementById("ville")
+    let mail = document.getElementById("e-mail")
+}
 let prixTotalPanier=[]
 
 monPanier()

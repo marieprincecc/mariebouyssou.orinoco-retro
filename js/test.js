@@ -300,6 +300,11 @@ let prixTotalPanier=[]
 //for (let p = 0; p <panier.length; p++) {}
     
 
-
+/////////////////////////////essai sup 1 produit
+let supprimerUnProduit = document.getElementById("btnSupProduit")
+supprimerUnProduit.addEventListener("click",(e)=>{
+    e.preventDefault
+    localStorage.removeItem((panier[i]))
+})
 
 monPanier()

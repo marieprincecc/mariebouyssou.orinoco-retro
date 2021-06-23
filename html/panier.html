@@ -73,13 +73,16 @@
             </div> 
            <div class="col"> 
             <p class="text-center h2" id="total"></p> <!--col formulaire-->
-                <form class="form-control">
+                <form class="form-control" onsubmit="return verifFormulaire ()">
                     <input type="radio" name="gender" value="Mme"> Mme 
                     <input type="radio" name="gender" value="Mr"> Mr <br>  <!--radio mr madame-->
 
-                    <label for="name" class="form-label">Nom Prenom</label> <!--identité-->
-                    <input type="name" class="form-control" id="name" placeholder="Nom Prenom" required>
+                    <label for="firstname" class="form-label">Nom</label> <!--identité-->
+                    <input type="name" class="form-control" id="firstname" placeholder="Nom" required>
 
+                    <label for="lastname" class="form-label">Prenom</label> <!--identité-->
+                    <input type="name" class="form-control" id="lastname" placeholder="Prenomom" required>
+                    
                     <label for="dateDeNaissance" class="form-label">Date de naissance</label> <!--date de naissance-->
                     <input type="date" value="01/01/2000" min="1910-01-01" max="2021-01-01"class="form-control" id="dateDeNaissance" placeholder="ex: jj/mm/aaaa" required>
 
