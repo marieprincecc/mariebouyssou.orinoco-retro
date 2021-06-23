@@ -102,42 +102,26 @@ const createPrix=(i)=>{                     //creation span prix
     return prixProduit
 }
 
+
 const createcolQTE=(i)=>{               //creation de la col pour les quantité
 
     let colQTE=document.createElement("div")
     colQTE.classList.add("col-2")
-    colQTE.id=("qte"+i)
+    colQTE.id=("colQte"+i)
 
     return colQTE
 }
 
-const createSelect=(i)=>{               //creation formSelect
-
-    let formSelect=document.createElement("select")
-    formSelect.classList.add("form-select")
-    formSelect.id=("form-select"+i)
-
-    return formSelect
+const createQte=(i)=>{
+    let qte= document.createElement("span")
+    qte.classList.add("h4")
+    qte.id=("qte"+i)
+    return qte
 }
 
-const createOptionQTE=()=>{         //creation option "quantité"
 
-    let optionQTE=document.createElement("option")
-    optionQTE.setAttribute("selected","")
-    optionQTE.innerHTML+="Quantité"
 
-    return optionQTE
-}
 
-const createOption=()=>{                //creation option + boucle  0 a 10
-
-    for (let i = 0;  i< 10;  i++) {
-        let option=document.createElement("option")
-        option.setAttribute("value",+i)
-        return option 
-    }
-               
-}
 
 const createSousTotal=(i)=>{                    //creation sous total
 
@@ -169,20 +153,19 @@ const createLigneComplete =(i)=>{       //appel des fonction pour crée toute la
     let colProduit = createColProduit(i)
     let titre = createTitre(i)
     let prix = createPrix(i)
-    let divQTE = createcolQTE(i)
-    let select = createSelect(i)
-    let optionSelect = createOptionQTE()
-    let option = createOption()
+    let colQte = createcolQTE(i)
+    let qte= createQte(i)
     let sousTotal = createSousTotal(i)
     let supprimer = createSupprimer(i)
 
     colImg.appendChild(imgPanier)
-    colProduit.appendChild(titre, prix)
-    select.appendChild(optionSelect, option)
-    divQTE.appendChild(select)
+    colProduit.appendChild(titre)
+    colProduit.appendChild(prix)
+    colQte.appendChild(qte)
+   
     row.appendChild(colImg)
     row.appendChild(colProduit)
-    row.appendChild(divQTE)
+    row.appendChild(colQte)
     row.appendChild(sousTotal)
     row.appendChild(supprimer)
     return row
@@ -204,14 +187,14 @@ const createImg= (panier, i) =>{            //attribut l'url de l'image dans l'e
 const nomArticle= (panier,i) =>{             //attribut le nom de la camera dans l'element #titre +i correspondant
     let nomArticle = panier[i].nomArticle;  
     let titre = document.getElementById("titre"+i);
-    //titre.innerHTML += nomArticle
+    titre.innerHTML += nomArticle
     console.log(nomArticle);
 }
 
 const createPlacePrix= (panier,i) =>{              //affiche le prix  dans l'element #prix +i correspondant
     let prixArticle= panier[i].prixArticle;
     let prix = document.getElementById("prix"+i);
-    //prix.textContent = prixArticle +"€ "
+    prix.textContent = prixArticle +"€ "
     console.log(prixArticle);
 }
 panier()
