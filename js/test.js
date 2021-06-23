@@ -1,26 +1,21 @@
-function panier() {
+function monPanier() {
     
 
-const local= JSON.parse(localStorage.getItem("produit"))
+
 const panier= JSON.parse(localStorage.getItem("panier"))
-console.log(panier);
+
 
 if ( panier!=null) {
     panierNonVide()
-    let prix= local.prix
-    let nom= local.nom
-    let img= local.img
-    let qte= 1
-
-   const objet = new LignePanier(nom,qte,prix,img);
-   console.log(objet);
+  
    //console.log(objet);
   
    // panier.push(objet);
 
   
-   localStorage.setItem("panier",JSON.stringify(panier))
-   
+  // localStorage.setItem("panier",JSON.stringify(panier))
+  
+  //let prixTotalPanier=[]
   
    for (let i = 0; i < panier.length; i++) {
     insereRow(i)
@@ -28,32 +23,30 @@ if ( panier!=null) {
     nomArticle(panier,i)
     createPlacePrix(panier,i)
     affichageQte(panier,i)
+    calcule(panier,i)
+    plusUn(panier,i)
+    moinUn(panier,i)
+    affichageCalcul(panier, i)
+    total(panier,i)
    }
 } else {
    panierVide()
 }
+
+console.log(prixTotalPanier);
+const reducer = (accumulator, currentValue) => accumulator + currentValue
+let prixTotale= prixTotalPanier.reduce(reducer)
+let affichageTotal = document.getElementById("total")
+affichageTotal.innerHTML =("Prix total:"+ prixTotale + "€")
+console.log(prixTotale);
 }
 
-  function LignePanier (nom, qte, prix,img)           //objet lignePanier 
-{
-    this.nomArticle = nom;
-    this.qteArticle = qte;
-    this.prixArticle = prix;
-    this.img= img;
-    this.ajouterQte = function(qte)
-    {
-        this.qteArticle += qte;                         //ajoute la quatité a quantité
-    }
-    this.getPrixLigne = function()
-    {
-        var resultat = this.prixArticle * this.qteArticle;          //total de la ligne (prix*quantité)
-        return resultat;
-    }
-    this.getNom = function() 
-    {
-        return this.nomArticle;                                     //nom de l'article
-    }
+const total=(panier,i)=>{
+    let prixArticleDansLePanier = panier[i].prix
+    prixTotalPanier.push(prixArticleDansLePanier)
+
 }
+
 
 const panierVide=()=>{                                  //affichage panier vide
         let p = document.createElement("p")
@@ -254,6 +247,59 @@ const affichageQte =(panier,i)=>{
     let qteArticle= panier[i].qte
     let qte = document.getElementById("qte"+i)
     qte.innerHTML += qteArticle
+    console.log( "me voila"+ qteArticle);
+
+}
+const calcule = (panier, i)=>{
+    let qteArticle= panier[i].qte
+    let prixArticle= panier[i].prix;
+   
+console.log("qte"+qteArticle+"prix"+prixArticle);
+    let sousTotal = qteArticle*prixArticle
+   return sousTotal
+    
+    
 }
 
-panier()
+const affichageCalcul = (panier, i)=>{
+    let totalPrixArticle = document.getElementById("sousTotal"+i)
+    let sousTotal= calcule(panier,i)
+    console.log("sous total"+sousTotal);
+    totalPrixArticle.innerHTML += sousTotal
+}
+
+const plusUn = (panier,i)=>{
+    
+    let qteArticle= panier[i].qte
+    let btnPlus = document.getElementById("plus")
+    btnPlus.addEventListener('click',()=>{
+    
+    qteArticle ++ 
+    let qte = document.getElementById("qte"+i)
+    qte.innerHTML = qteArticle
+    return qteArticle
+
+})
+}
+
+const moinUn = (panier,i)=>{
+    
+    let qteArticle= panier[i].qte
+    let btnMoin = document.getElementById("moin")
+    btnMoin.addEventListener('click',()=>{
+    
+    qteArticle -- 
+    let qte = document.getElementById("qte"+i)
+    qte.innerHTML = qteArticle
+    return qteArticle
+
+})
+}
+let prixTotalPanier=[]
+
+//for (let p = 0; p <panier.length; p++) {}
+    
+
+
+
+monPanier()
