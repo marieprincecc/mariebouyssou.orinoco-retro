@@ -6,7 +6,7 @@ const panier= JSON.parse(localStorage.getItem("panier"))
 console.log(panier);
 
 if ( panier!=null) {
-    
+    panierNonVide()
     let prix= local.prix
     let nom= local.nom
     let img= local.img
@@ -16,7 +16,7 @@ if ( panier!=null) {
    console.log(objet);
    //console.log(objet);
   
-    panier.push(objet);
+   // panier.push(objet);
 
   
    localStorage.setItem("panier",JSON.stringify(panier))
@@ -64,6 +64,15 @@ const panierVide=()=>{                                  //affichage panier vide
        
 }
 
+const panierNonVide=()=>{                                  //affichage panier vide
+    let p = document.createElement("p")
+    p.classList.add("h2", "text-center")
+    p.innerHTML= "Contenu de votre panier"
+    let detailPanier = document.getElementById("detailPanier")
+    detailPanier.appendChild(p)
+   
+}
+
 const createRowPanier=(i)=>{                    //creation ligne de panier
 
     let row=document.createElement("div")
@@ -100,10 +109,16 @@ const createColProduit=(i)=>{                       //creation div contenant tit
     return colProduit
 }
 
+const createListe=(i)=>{
+    let liste= document.createElement("ul")
+    liste.classList.add("list-unstyled")
+    liste.id=("articlePrixNom"+i)
+    return liste
+}
 const createTitre=(i)=>{                    //creation span titre
 
-    let titreProduit=document.createElement("span")
-    titreProduit.classList.add("h2")
+    let titreProduit=document.createElement("li")
+    
     titreProduit.id=("titre"+i)
 
     return titreProduit
@@ -111,8 +126,8 @@ const createTitre=(i)=>{                    //creation span titre
 
 const createPrix=(i)=>{                     //creation span prix
 
-    let prixProduit=document.createElement("span")
-    prixProduit.classList.add("h3")
+    let prixProduit=document.createElement("li")
+    
     prixProduit.id=("prix"+i)
 
     return prixProduit
@@ -128,9 +143,25 @@ const createcolQTE=(i)=>{               //creation de la col pour les quantité
     return colQTE
 }
 
+const btnSup = ()=>{
+    let btnSup= document.createElement("button")
+    btnSup.classList.add("btn","btn-light")
+    btnSup.id=("plus")
+    btnSup.textContent += "+"
+    return btnSup
+}
+
+const btnMin = ()=>{
+    let btnMin= document.createElement("button")
+    btnMin.classList.add("btn","btn-light")
+    btnMin.id=("moin")
+    btnMin.textContent += "-"
+    return btnMin
+}
+
 const createQte=(i)=>{
     let qte= document.createElement("span")
-    qte.classList.add("h4")
+   
     qte.id=("qte"+i)
     return qte
 }
@@ -167,18 +198,23 @@ const createLigneComplete =(i)=>{       //appel des fonction pour crée toute la
     let colImg = createColImagePanier(i)
     let imgPanier = createImgPanier(i)
     let colProduit = createColProduit(i)
+    let liste = createListe(i)
     let titre = createTitre(i)
     let prix = createPrix(i)
     let colQte = createcolQTE(i)
+    let plus = btnSup()
+    let moin = btnMin()
     let qte= createQte(i)
     let sousTotal = createSousTotal(i)
     let supprimer = createSupprimer(i)
 
     colImg.appendChild(imgPanier)
-    colProduit.appendChild(titre)
-    colProduit.appendChild(prix)
+    colProduit.appendChild(liste)
+    liste.appendChild(titre)
+    liste.appendChild(prix)
+    colQte.appendChild(moin)
     colQte.appendChild(qte)
-   
+    colQte.appendChild(plus)
     row.appendChild(colImg)
     row.appendChild(colProduit)
     row.appendChild(colQte)
@@ -201,21 +237,21 @@ const createImg= (panier, i) =>{            //attribut l'url de l'image dans l'e
 }
 
 const nomArticle= (panier,i) =>{             //attribut le nom de la camera dans l'element #titre +i correspondant
-    let nomArticle = panier[i].nomArticle;  
+    let nom = panier[i].nom;  
     let titre = document.getElementById("titre"+i);
-    titre.innerHTML += nomArticle
-    console.log(nomArticle);
+    titre.innerHTML += nom
+    console.log(nom);
 }
 
 const createPlacePrix= (panier,i) =>{              //affiche le prix  dans l'element #prix +i correspondant
-    let prixArticle= panier[i].prixArticle;
+    let prixArticle= panier[i].prix;
     let prix = document.getElementById("prix"+i);
     prix.textContent = prixArticle +"€ "
     console.log(prixArticle);
 }
 
 const affichageQte =(panier,i)=>{
-    let qteArticle= panier[i].qteArticle
+    let qteArticle= panier[i].qte
     let qte = document.getElementById("qte"+i)
     qte.innerHTML += qteArticle
 }

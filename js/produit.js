@@ -11,7 +11,7 @@ const produitSelect=()=>{
                 }
         })
         .then(function(value) {
-                      
+
             produitImgSelect(value)          //appel des fonctions
             produitPriceSelect(value)
             produitNomSelect(value)
@@ -33,12 +33,14 @@ const produitSelect=()=>{
             console.log(panier);
             if (localStorage.panier) {
             localStorage.setItem("produit",JSON.stringify(produit))
+           
             //panier.push(produit)
            }
             else{
                 localStorage.setItem("panier",JSON.stringify(panier))  
                 localStorage.setItem("produit",JSON.stringify(produit))
-                panier.push(produit)
+               
+                //panier.push(produit)
            }
             
            
@@ -49,6 +51,14 @@ const produitSelect=()=>{
             console.log(err);                          //affiche l'erreure dans la console
         })
     }
+
+    let btn= document.getElementById("ajoutPanier")
+    btn.addEventListener('click',()=>{
+        let panier=JSON.parse(localStorage.getItem("panier"))
+        let produit=JSON.parse(localStorage.getItem("produit"))
+        panier.push(produit)
+        localStorage.setItem("panier",JSON.stringify(panier))
+    })
 
 const produitImgSelect= (value) =>{            //attribut l'url de l'image dans l'element #appareil 
     let imageUrl= value.imageUrl;
@@ -102,7 +112,6 @@ const optionProduit=(value)=>{              //boucle pour cree une ligne par opt
     }
     
 }
-
 
 
 produitSelect();                 //appel la fonction 
