@@ -223,7 +223,7 @@ const createNomArticle= (objet,i) =>{             //attribut le nom de la camera
 const createPlacePrix= (objet,i) =>{              //affiche le prix  dans l'element #prix +i correspondant
     let prixArticle= objet[i].price;
     let prix = document.getElementById("prix"+i);
-    priix.textContent = prixArticle +"€ "
+    prix.textContent = prixArticle +"€ "
 }
 
 

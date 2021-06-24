@@ -175,15 +175,89 @@ localStorage.clear()
 alert("Votre panier est vide")
 window.location.reload()
 })
-
-const verifFormulaire=()=> {
-    let prenom= document.getElementById("firstname")
-    let nom= document.getElementById("lastname")
-    let dateDeNaissance=document.getElementById("dateDeNaissance")
-    let adress = document.getElementById("adresse")
-    let city = document.getElementById("ville")
-    let mail = document.getElementById("e-mail")
+function getValue() {
+    
 }
+getValue()
+let formulaire= document.getElementById("formulaire")
+let prenom= document.getElementById("firstname").innerText
+let nom= document.getElementById("lastname").innerText
+let adress = document.getElementById("adresse").innerText
+let city = document.getElementById("ville").innerText
+let mail = document.getElementById("email").innerText
+
+const valider=(event)=>{
+    if (!formOK) {
+        event.preventDefault() 
+        alert("verifiez le formulaire")
+        
+    }else{
+        console.log('cest ok');
+      fetch("http://localhost:3000/html/confirmation/order_id",{
+        method:"POST",
+        body:JSON.stringify(champ,panier),
+        Headers:{
+            "Content-Type":"application/JSON"
+        },
+    })
+       
+    }
+  //fonction a executer lorque le formulaire sera validé
+}
+
+formulaire.addEventListener("submit", valider)
+
+let champ=[]
+champ.push(nom)
+champ.push(prenom)
+champ.push(city)
+champ.push(adress)
+champ.push(mail)
+
+
+console.log(champ);
+
+//si le form est ok
+let formOK = true
+
+
+let regex = /^[a-z0-9]+([_|\.|-]{1}[a-z0-9]+)*@[a-z0-9]+([_|\.|-]{1}[a-z0-9]+)*[\.]{1}[a-z]{2,6}$/
+
+if (regex.exec(champ.mail)==null) {
+    formOK=false
+}else{
+    formOK=true
+}
+
+if (champ.nom == "") {
+    formOK=false
+}else{
+    formOK=true
+}
+
+if (champ.prenom == "") {
+    formOK=false
+}else{
+    formOK=true
+}
+
+if (champ.city == "") {
+    formOK=false
+}else{
+    formOK=true
+}
+
+if (champ.adress == "") {
+    formOK=false
+}else{
+    formOK=true
+}
+
+
+
+
+    
+
 let prixTotalPanier=[]
 
 monPanier()

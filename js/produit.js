@@ -23,17 +23,20 @@ const produitSelect=()=>{
             let prixProduit= value.price
             let nomCamera= value.name
             let imgCamera= value.imageUrl
+            let idCamera= value._id
             const produit={
                 nom:nomCamera,
                 prix:prixProduit,
                 img:imgCamera,
+                id: idCamera,
                 qte:1
             }
+            console.log(produit);
             const panier=[]     
             console.log(panier);
             if (localStorage.panier) {
             localStorage.setItem("produit",JSON.stringify(produit))
-           
+           console.log(panier);
             //panier.push(produit)
            }
             else{

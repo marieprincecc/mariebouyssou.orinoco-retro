@@ -73,7 +73,7 @@
             </div> 
            <div class="col"> 
             <p class="text-center h2" id="total"></p> <!--col formulaire-->
-                <form class="form-control" onsubmit="return verifFormulaire ()">
+                <form class="form-control"id="formulaire" action="http://localhost:3000/api/cameras" method="POST">
                     <input type="radio" name="gender" value="Mme"> Mme 
                     <input type="radio" name="gender" value="Mr"> Mr <br>  <!--radio mr madame-->
 
@@ -82,20 +82,13 @@
 
                     <label for="lastname" class="form-label">Prenom</label> <!--identité-->
                     <input type="name" class="form-control" id="lastname" placeholder="Prenomom" required>
-                    
-                    <label for="dateDeNaissance" class="form-label">Date de naissance</label> <!--date de naissance-->
-                    <input type="date" value="01/01/2000" min="1910-01-01" max="2021-01-01"class="form-control" id="dateDeNaissance" placeholder="ex: jj/mm/aaaa" required>
 
                     <label for="email" class="form-label">e-mail</label> <!--email-->
                     <input type="email" class="form-control" id="email" placeholder="ex: votremail@mail.com" required>
 
                     <label for="adresse" class="form-label">Adresse de livraison</label> <!--adresse-->
                     <input type="text" class="form-control" id="adresse" placeholder="Adresse ligne 1" required>
-                    <input type="text" class="form-control" placeholder="adresse ligne 2"> <!--2eme ligne adresse facultatif-->
-
-                    <label for="codePostal" class="form-label">Code postal</label> <!--code postal-->
-                    <input type="number" class="form-control" id="codePostal" placeholder="ex:75001" required>
-
+    
                     <label for="ville" class="form-label">Ville</label> <!--ville-->
                     <input type="text" class="form-control" id="ville" placeholder="ex:Paris" required>
 

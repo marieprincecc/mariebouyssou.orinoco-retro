@@ -308,3 +308,10 @@ supprimerUnProduit.addEventListener("click",(e)=>{
 })
 
 monPanier()
+
+/////////////////////test get
+
+let btnVoirPlus = document.getElementById("lienAppareil"+i)
+btnVoirPlus.addEventListener('click',(){
+   URLProduit.GET(/?id:"_id")
+})
