@@ -193,13 +193,15 @@ const valider=(event)=>{
         
     }else{
         console.log('cest ok');
-      fetch("http://localhost:3000/html/confirmation/order_id",{
+
+      fetch("http://localhost:3000/api/cameras/order",{
         method:"POST",
         body:JSON.stringify(champ,panier),
         Headers:{
             "Content-Type":"application/JSON"
         },
     })
+    
        
     }
   //fonction a executer lorque le formulaire sera validé
