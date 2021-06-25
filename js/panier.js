@@ -190,11 +190,11 @@ function getValue() {
 const valider=($event)=>{
     
     let contact={
-        "lastName": $event.target[3].value,
-        "firstName": $event.target[2].value,
-        "city": $event.target[6].value,
-        "address": $event.target[5].value,
-        "email": $event.target[4].value
+        lastName: $event.target[3].value,
+        firstName: $event.target[2].value,
+        city: $event.target[6].value,
+        address: $event.target[5].value,
+        email: $event.target[4].value
         }
         
     let regex = /^[a-z0-9]+([_|\.|-]{1}[a-z0-9]+)*@[a-z0-9]+([_|\.|-]{1}[a-z0-9]+)*[\.]{1}[a-z]{2,6}$/
@@ -212,7 +212,7 @@ const valider=($event)=>{
         
     }else{
         console.log('cest ok');
-        const  products=[ JSON.parse(localStorage.getItem("panier"))[0].id]
+       
       fetch("http://localhost:3000/api/cameras/order",{
         method:"POST",
         body:JSON.stringify({contact, products}),
@@ -227,6 +227,7 @@ const valider=($event)=>{
     })
     .then(function(value) {
         console.log(value);
+        localStorage.setItem("recap",JSON.stringify(value))
     
     })
     .catch(function(err) {
