@@ -11,6 +11,7 @@ function monPanier() {
                 nomArticle(panier,i)
                 createPlacePrix(panier,i)
                 total(panier,i)
+                id(panier,i)
             }
             } else {
                 panierVide()
@@ -22,6 +23,12 @@ function monPanier() {
             let affichageTotal = document.getElementById("total")
             affichageTotal.innerHTML =("Prix total:"+ prixTotale + "€")
             
+}
+
+const id=(panier, i)=>{
+    let productsId = panier[i].id
+    products.push(productsId)
+
 }
     
 const total=(panier,i)=>{
@@ -178,28 +185,53 @@ window.location.reload()
 function getValue() {
     
 }
-getValue()
-let formulaire= document.getElementById("formulaire")
-let prenom= document.getElementById("firstname").innerText
-let nom= document.getElementById("lastname").innerText
-let adress = document.getElementById("adresse").innerText
-let city = document.getElementById("ville").innerText
-let mail = document.getElementById("email").innerText
+    let formOK = true
 
-const valider=(event)=>{
+const valider=($event)=>{
+    
+    let contact={
+        "lastName": $event.target[3].value,
+        "firstName": $event.target[2].value,
+        "city": $event.target[6].value,
+        "address": $event.target[5].value,
+        "email": $event.target[4].value
+        }
+        
+    let regex = /^[a-z0-9]+([_|\.|-]{1}[a-z0-9]+)*@[a-z0-9]+([_|\.|-]{1}[a-z0-9]+)*[\.]{1}[a-z]{2,6}$/
+
+    if (regex.exec(contact.email)==null) {
+        formOK=false
+    }else{
+        formOK=true
+    }
     if (!formOK) {
-        event.preventDefault() 
+       // console.log($event.target[0]);
+        $event.preventDefault() 
+       
         alert("verifiez le formulaire")
         
     }else{
         console.log('cest ok');
-
+        const  products=[ JSON.parse(localStorage.getItem("panier"))[0].id]
       fetch("http://localhost:3000/api/cameras/order",{
         method:"POST",
-        body:JSON.stringify(champ,panier),
-        Headers:{
-            "Content-Type":"application/JSON"
-        },
+        body:JSON.stringify({contact, products}),
+        headers: {'Accept': 'application/json',"Content-type": "application/json; charset=UTF-8"}
+
+        
+        })
+    .then(function(res) {
+      
+           return res.json();      //convertie les données json
+        
+    })
+    .then(function(value) {
+        console.log(value);
+    
+    })
+    .catch(function(err) {
+        console.log("une erreure est survenue") 
+        console.log(err)                     //afiche la reponse dans la console en cas d'erreur
     })
     
        
@@ -209,57 +241,20 @@ const valider=(event)=>{
 
 formulaire.addEventListener("submit", valider)
 
-let champ=[]
-champ.push(nom)
-champ.push(prenom)
-champ.push(city)
-champ.push(adress)
-champ.push(mail)
 
 
-console.log(champ);
+
+
 
 //si le form est ok
-let formOK = true
 
-
-let regex = /^[a-z0-9]+([_|\.|-]{1}[a-z0-9]+)*@[a-z0-9]+([_|\.|-]{1}[a-z0-9]+)*[\.]{1}[a-z]{2,6}$/
-
-if (regex.exec(champ.mail)==null) {
-    formOK=false
-}else{
-    formOK=true
-}
-
-if (champ.nom == "") {
-    formOK=false
-}else{
-    formOK=true
-}
-
-if (champ.prenom == "") {
-    formOK=false
-}else{
-    formOK=true
-}
-
-if (champ.city == "") {
-    formOK=false
-}else{
-    formOK=true
-}
-
-if (champ.adress == "") {
-    formOK=false
-}else{
-    formOK=true
-}
 
 
 
 
     
-
+let products=[]
+console.log(products);
 let prixTotalPanier=[]
 
 monPanier()

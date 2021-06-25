@@ -1,5 +1,5 @@
 function confirmation() {
-    const confirmation= JSON.parse(JSON.stringify("champ","panier"))
+    const confirmation= JSON.parse(JSON.stringify("contact","products"))
     console.log(confirmation);
     fetch("http://localhost:3000/api/cameras/order")
     .then(function(res) {
@@ -9,7 +9,7 @@ function confirmation() {
         }
     })
     .then(function(value) {
-        console.log(value);
+        console.log(value,1);
     
 })
 
