@@ -35,6 +35,7 @@ const total=(panier,i)=>{
 
     let prixArticleDansLePanier = panier[i].prix
     prixTotalPanier.push(prixArticleDansLePanier)
+    //products.push(prixArticleDansLePanier)
 }
 
 const panierVide=()=>{                                  //affichage panier vide
