@@ -24,27 +24,38 @@ const produitSelect=()=>{
             let nomCamera= value.name
             let imgCamera= value.imageUrl
             let idCamera= value._id
-            const produit={
+            let produit={
                 nom:nomCamera,
                 prix:prixProduit,
                 img:imgCamera,
                 id: idCamera,
                 qte:1
             }
-            console.log(produit);
-            const panier=[]     
-            console.log(panier);
-            if (localStorage.panier) {
-            localStorage.setItem("produit",JSON.stringify(produit))
-           console.log(panier);
-            //panier.push(produit)
-           }
-            else{
+            
+             
+
+            let btn= document.getElementById("ajoutPanier")
+            btn.addEventListener('click',()=>{
+                
+            if (localStorage.panier==null) {
+                panier.push(produit)
                 localStorage.setItem("panier",JSON.stringify(panier))  
-                localStorage.setItem("produit",JSON.stringify(produit))
-               
-                //panier.push(produit)
-           }
+           
+           }else{
+           
+                let panier=JSON.parse(localStorage.getItem("panier"))
+                console.log(produit);
+                console.log(panier);
+                const verif = panier.find(item => item.id === produit.id)
+                if(verif){
+                    verif.qte++
+                }else{panier.push(produit)}
+             
+                
+                localStorage.setItem("panier",JSON.stringify(panier))
+            }
+           })
+            
             
            
 
@@ -55,13 +66,8 @@ const produitSelect=()=>{
         })
     }
 
-    let btn= document.getElementById("ajoutPanier")
-    btn.addEventListener('click',()=>{
-        let panier=JSON.parse(localStorage.getItem("panier"))
-        let produit=JSON.parse(localStorage.getItem("produit"))
-        panier.push(produit)
-        localStorage.setItem("panier",JSON.stringify(panier))
-    })
+    const panier=[]    
+   
 
 const produitImgSelect= (value) =>{            //attribut l'url de l'image dans l'element #appareil 
     let imageUrl= value.imageUrl;

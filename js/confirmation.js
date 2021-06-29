@@ -1,7 +1,7 @@
 function confirmation() {
     const recap= JSON.parse(localStorage.getItem("recap"))
 console.log(recap);
-
+const total=JSON.parse(localStorage.getItem("total"))
 let idDeCommande= document.getElementById("id")
 
 
@@ -15,10 +15,9 @@ totalDeLaCommande(products, i)
 
 idDeCommande.textContent += " " + id
 
-const reducer = (accumulator, currentValue) => accumulator + currentValue
-            let prixTotale= totalCommande.reduce(reducer)
+
             let affichageTotal = document.getElementById("total")
-            affichageTotal.innerHTML =( prixTotale + "€")
+            affichageTotal.innerHTML =( total + "€")
 
 }
 const totalDeLaCommande=(products,i)=>{

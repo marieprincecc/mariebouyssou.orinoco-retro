@@ -12,6 +12,8 @@ function monPanier() {
                 createPlacePrix(panier,i)
                 total(panier,i)
                 id(panier,i)
+                calcule(panier,i)
+                affichageQte(panier, i)
             }
             } else {
                 panierVide()
@@ -22,6 +24,7 @@ function monPanier() {
             let prixTotale= prixTotalPanier.reduce(reducer)
             let affichageTotal = document.getElementById("total")
             affichageTotal.innerHTML =("Prix total:"+ prixTotale + "€")
+            localStorage.setItem("total",JSON.stringify(prixTotale))  
             
 }
 
@@ -30,10 +33,34 @@ const id=(panier, i)=>{
     products.push(productsId)
 
 }
+
+const calcule = (panier, i)=>{
+    let qteArticle= panier[i].qte
+    let prixArticle= panier[i].prix;
+   
+console.log("qte"+qteArticle+"prix"+prixArticle);
+    let sousTotal = qteArticle*prixArticle
+   return sousTotal
+    
+    
+}
+const affichageQte=(panier,i)=>{
+    let qte= document.getElementById("qte"+i)
+    let ssTotal= document.getElementById("sousTotal"+i)
+
+    let sousTotal= calcule(panier,i)
+    let qteArticle= panier[i].qte
+
+    qte.innerHTML+=qteArticle
+    ssTotal.innerHTML+=(sousTotal+"€")
+
+}
     
 const total=(panier,i)=>{
 
-    let prixArticleDansLePanier = panier[i].prix
+    let sousTotal=calcule(panier,i)
+
+    let prixArticleDansLePanier = sousTotal
     prixTotalPanier.push(prixArticleDansLePanier)
     //products.push(prixArticleDansLePanier)
 }
@@ -118,11 +145,44 @@ const createPrix=(i)=>{                     //creation span prix
     return prixProduit
 }
 
+const createColQte=(i)=>{
+    let colQte = document.createElement("div")
+    colQte.classList.add("col-3")
+    colQte.id=("colQte"+i)
+    return colQte
+}
+
+const createListeSousTotal=(i)=>{
+    let listeSousTotal= document.createElement("ul")
+    listeSousTotal.classList.add("list-unstyled")
+    listeSousTotal.id=("qteSousTotal"+i)
+
+    return listeSousTotal
+}
+
+const createQte=(i)=>{                     //creation qte
+
+    let qte=document.createElement("li")
+    qte.classList.add("h4")
+    qte.id=("qte"+i)
+
+    return qte
+}
+
+const createSousTotal=(i)=>{                     //creation soustotal
+
+    let sousTotal=document.createElement("li")
+    sousTotal.classList.add("h4")
+    sousTotal.id=("sousTotal"+i)
+
+    return sousTotal
+}
+
 
 const createBtnSupProduit=(i)=>{                       //creation div contenant titre et prix
 
     let btnSupProduit=document.createElement("button")
-    btnSupProduit.classList.add("col-4","btn","btn-secondary")
+    btnSupProduit.classList.add("col-1","btn","btn-secondary")
     btnSupProduit.id=("btnSupProduit"+i)
     btnSupProduit.textContent = "Retirer du panier"
 
@@ -139,13 +199,22 @@ const createLigneComplete =(i)=>{       //appel des fonction pour crée toute la
     let titre = createTitre(i)
     let prix = createPrix(i)
     let btnSupProduit = createBtnSupProduit(i)
+    let colQte = createColQte(i)
+    let listeQte= createListeSousTotal(i)
+    let qte = createQte(i)
+    let sousTotal = createSousTotal(i)
 
     colImg.appendChild(imgPanier)
     colProduit.appendChild(liste)
     liste.appendChild(titre)
     liste.appendChild(prix)
+    colQte.appendChild(listeQte)
+    listeQte.appendChild(qte)
+    listeQte.appendChild(sousTotal)
+    
     row.appendChild(colImg)
     row.appendChild(colProduit)
+    row.appendChild(colQte)
     row.appendChild(btnSupProduit)
    
     return row
@@ -256,7 +325,7 @@ formulaire.addEventListener("submit", valider)
 
     
 let products=[]
-console.log(products);
+
 let prixTotalPanier=[]
 
 monPanier()
