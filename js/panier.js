@@ -14,6 +14,20 @@ function monPanier() {
                 id(panier,i)
                 calcule(panier,i)
                 affichageQte(panier, i)
+                let btnSupUn= document.getElementById("btnSupProduit"+i)
+                btnSupUn.addEventListener("click",()=>{
+                   let panier= JSON.parse(localStorage.getItem("panier"))
+                   panier[i].qte --
+                   console.log(panier[i].qte);
+                  //return qteArticle
+                  localStorage.setItem("panier",JSON.stringify(panier))
+                    window.location.reload()
+                    
+                 
+
+                    
+                })
+               
             }
             } else {
                 panierVide()
@@ -178,6 +192,22 @@ const createSousTotal=(i)=>{                     //creation soustotal
     return sousTotal
 }
 
+const btnSup = (i)=>{
+    let btnSup= document.createElement("button")
+    btnSup.classList.add("btn","btn-light")
+    btnSup.id=("plus"+i)
+    btnSup.textContent += "+"
+    return btnSup
+}
+
+const btnMin = (i)=>{
+    let btnMin= document.createElement("button")
+    btnMin.classList.add("btn","btn-light")
+    btnMin.id=("moin"+i)
+    btnMin.textContent += "-"
+    return btnMin
+}
+
 
 const createBtnSupProduit=(i)=>{                       //creation div contenant titre et prix
 
@@ -203,6 +233,8 @@ const createLigneComplete =(i)=>{       //appel des fonction pour crée toute la
     let listeQte= createListeSousTotal(i)
     let qte = createQte(i)
     let sousTotal = createSousTotal(i)
+    let plus = btnSup(i)
+    let moin = btnMin(i)
 
     colImg.appendChild(imgPanier)
     colProduit.appendChild(liste)
@@ -252,9 +284,7 @@ localStorage.clear()
 alert("Votre panier est vide")
 window.location.reload()
 })
-function getValue() {
-    
-}
+
     let formOK = true
 
 const valider=($event)=>{
