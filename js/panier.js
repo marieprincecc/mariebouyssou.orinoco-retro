@@ -14,21 +14,22 @@ function monPanier() {
                 id(panier,i)
                 calcule(panier,i)
                 affichageQte(panier, i)
-                let btnSupUn= document.getElementById("btnSupProduit"+i)
+                let btnSupUn= document.getElementById("moin"+i)
                 btnSupUn.addEventListener("click",()=>{
                    let panier= JSON.parse(localStorage.getItem("panier"))
                    panier[i].qte --
-                   console.log(panier[i].qte);
-                  //return qteArticle
                   localStorage.setItem("panier",JSON.stringify(panier))
                     window.location.reload()
-                    
-                 
-
-                    
                 })
+                let btnPlus= document.getElementById("plus"+i)
+                btnPlus.addEventListener("click",()=>{
+                   let panier= JSON.parse(localStorage.getItem("panier"))
+                   panier[i].qte ++
+                  localStorage.setItem("panier",JSON.stringify(panier))
+                    window.location.reload()
                
-            }
+            })
+        }
             } else {
                 panierVide()
             }
@@ -64,9 +65,16 @@ const affichageQte=(panier,i)=>{
 
     let sousTotal= calcule(panier,i)
     let qteArticle= panier[i].qte
-
+if (qteArticle>0) {
     qte.innerHTML+=qteArticle
     ssTotal.innerHTML+=(sousTotal+"€")
+}else if(qteArticle<=0){
+    let panier= JSON.parse(localStorage.getItem("panier"))
+    localStorage.removeItem("panier"+[i])
+   localStorage.setItem("panier",JSON.stringify(panier))
+   
+}
+   
 
 }
     
@@ -109,7 +117,7 @@ const createRowPanier=(i)=>{                    //creation ligne de panier
 const createColImagePanier=(i)=>{                   //création col pour image
 
     let colImgPanier=document.createElement("div")
-    colImgPanier.classList.add("col-4")
+    colImgPanier.classList.add("col-3")
     colImgPanier.id=("colImg"+i)
 
     return colImgPanier
@@ -161,7 +169,7 @@ const createPrix=(i)=>{                     //creation span prix
 
 const createColQte=(i)=>{
     let colQte = document.createElement("div")
-    colQte.classList.add("col-3")
+    colQte.classList.add("col-3","text-center")
     colQte.id=("colQte"+i)
     return colQte
 }
@@ -209,15 +217,6 @@ const btnMin = (i)=>{
 }
 
 
-const createBtnSupProduit=(i)=>{                       //creation div contenant titre et prix
-
-    let btnSupProduit=document.createElement("button")
-    btnSupProduit.classList.add("col-1","btn","btn-secondary")
-    btnSupProduit.id=("btnSupProduit"+i)
-    btnSupProduit.textContent = "Retirer du panier"
-
-    return btnSupProduit
-}
 
 const createLigneComplete =(i)=>{       //appel des fonction pour crée toute la ligne 
 
@@ -228,7 +227,6 @@ const createLigneComplete =(i)=>{       //appel des fonction pour crée toute la
     let liste = createListe(i)
     let titre = createTitre(i)
     let prix = createPrix(i)
-    let btnSupProduit = createBtnSupProduit(i)
     let colQte = createColQte(i)
     let listeQte= createListeSousTotal(i)
     let qte = createQte(i)
@@ -246,8 +244,9 @@ const createLigneComplete =(i)=>{       //appel des fonction pour crée toute la
     
     row.appendChild(colImg)
     row.appendChild(colProduit)
+    row.appendChild(moin)
     row.appendChild(colQte)
-    row.appendChild(btnSupProduit)
+    row.appendChild(plus)
    
     return row
 }
