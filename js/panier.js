@@ -1,8 +1,8 @@
 function monPanier() {
     
     const panier= JSON.parse(localStorage.getItem("panier"))
-
-            if ( panier!=null) {
+    console.log(panier==null)
+            if ( panier.length>0) {
                 panierNonVide()
       
             for (let i = 0; i < panier.length; i++) {
@@ -18,7 +18,8 @@ function monPanier() {
                 btnSupUn.addEventListener("click",()=>{
                    let panier= JSON.parse(localStorage.getItem("panier"))
                    panier[i].qte --
-                  localStorage.setItem("panier",JSON.stringify(panier))
+                   let Newpanier= panier.filter(element=>element.qte>0)
+                  localStorage.setItem("panier",JSON.stringify(Newpanier))
                     window.location.reload()
                 })
                 let btnPlus= document.getElementById("plus"+i)
@@ -62,19 +63,12 @@ console.log("qte"+qteArticle+"prix"+prixArticle);
 const affichageQte=(panier,i)=>{
     let qte= document.getElementById("qte"+i)
     let ssTotal= document.getElementById("sousTotal"+i)
-
+   
     let sousTotal= calcule(panier,i)
     let qteArticle= panier[i].qte
-if (qteArticle>0) {
+
     qte.innerHTML+=qteArticle
     ssTotal.innerHTML+=(sousTotal+"€")
-}else if(qteArticle<=0){
-    let panier= JSON.parse(localStorage.getItem("panier"))
-    localStorage.removeItem("panier"+[i])
-   localStorage.setItem("panier",JSON.stringify(panier))
-   
-}
-   
 
 }
     
@@ -287,7 +281,7 @@ window.location.reload()
     let formOK = true
 
 const valider=($event)=>{
-    
+    const panier= JSON.parse(localStorage.getItem("panier"))
     let contact={
         lastName: $event.target[3].value,
         firstName: $event.target[2].value,
@@ -309,7 +303,13 @@ const valider=($event)=>{
        
         alert("verifiez le formulaire")
         
-    }else{
+    }
+    if (panier.length==0) {
+        $event.preventDefault()
+        alert("votre panier est vide")
+        
+    }
+    else{
         console.log('cest ok');
        
       fetch("http://localhost:3000/api/cameras/order",{
