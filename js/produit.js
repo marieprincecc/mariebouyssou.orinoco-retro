@@ -1,8 +1,11 @@
 const produitSelect=()=>{
-   
-    let params = new URLSearchParams(document.location.search.substring(1)); //récupère search dans l'url
-    let id = params.get("id")                      //extrait l'id de l'url
-   
+
+   /////////////////////RECUPERATION DE L'ID////////////////////////////////////////////////
+    let params = new URLSearchParams(document.location.search.substring(1)); 
+    let id = params.get("id")   
+                       
+   ////////////////////////RECUPERATION DES DONNE DE L'ARTICLE SELECTIONNE//////////////////
+
     fetch("http://localhost:3000/api/cameras/"+id) //appel des données a l'api
     
         .then(function(res) {
@@ -16,7 +19,6 @@ const produitSelect=()=>{
             produitPriceSelect(value)
             produitNomSelect(value)
             produitDescriptionSelect(value)
-            createURLPanier()
             optionProduit(value)
             
             
@@ -24,6 +26,7 @@ const produitSelect=()=>{
             let nomCamera= value.name
             let imgCamera= value.imageUrl
             let idCamera= value._id
+            //object produit
             let produit={
                 nom:nomCamera,
                 prix:prixProduit,
@@ -32,28 +35,28 @@ const produitSelect=()=>{
                 qte:1
             }
             
-             
-
+            /////////////////////evenement ajout panier au click//////////////////////
             let btn= document.getElementById("ajoutPanier")
-            btn.addEventListener('click',()=>{
-                
-            if (localStorage.panier==null) {
-                panier.push(produit)
-                localStorage.setItem("panier",JSON.stringify(panier))  
+
+            btn.addEventListener('click',()=>{                
+                if (localStorage.panier==null) {      //si pas de panier on met produit dans panier et on envoi panier dans le localStorage
+                    panier.push(produit)
+                    localStorage.setItem("panier",JSON.stringify(panier))  
            
-           }else{
+                }else{           //sinon on recupère panier on verifie, si le produit y est on lui ajoute la +1 a la quantité
            
-                let panier=JSON.parse(localStorage.getItem("panier"))
-                console.log(produit);
-                console.log(panier);
-                const verif = panier.find(item => item.id === produit.id)
-                if(verif){
-                    verif.qte++
-                }else{panier.push(produit)}
+                    let panier=JSON.parse(localStorage.getItem("panier"))
+                    console.log(produit);
+                    console.log(panier);
+                    const verif = panier.find(item => item.id === produit.id)
+                    if(verif){
+                        verif.qte++
+                    }else{panier.push(produit)      //sinon on rajoute le produit dans panier
+                    }     
              
                 
-                localStorage.setItem("panier",JSON.stringify(panier))
-            }
+                    localStorage.setItem("panier",JSON.stringify(panier)) //on renvoi panier dans le localStorage
+                }
            })
             
             
@@ -64,34 +67,36 @@ const produitSelect=()=>{
             console.log("une erreure est survenue"); //reponse en cas d'erreur
             console.log(err);                          //affiche l'erreure dans la console
         })
-    }
+}
 
-    const panier=[]    
+const panier=[]    
    
+    ///////////////////////////////AFFICHAGE DES CONTENU//////////////////////////////
 
-const produitImgSelect= (value) =>{            //attribut l'url de l'image dans l'element #appareil 
+const produitImgSelect= (value) =>{            //affichage de l'image 
     let imageUrl= value.imageUrl;
     let imgCamera = document.getElementById("appareil");
     imgCamera.setAttribute("src",imageUrl);
 }
     
-const produitNomSelect= (value) =>{             //attribut le nom de la camera dans l'element #titre 
+const produitNomSelect= (value) =>{             //affichage du nom
     let nomCamera= value.name;  
     let titre = document.getElementById("titre");
     titre.innerHTML += nomCamera; 
 }
     
-const produitPriceSelect= (value) =>{              //affiche le prix  dans l'element #prix
+const produitPriceSelect= (value) =>{              //affichage du prix 
     let prixProduit= value.price;
     let prix = document.getElementById("prix");
     prix.innerHTML += prixProduit+"€";
 }
     
-const produitDescriptionSelect=(value)=>{            //affiche la description  dans l'element #description
+const produitDescriptionSelect=(value)=>{            //affichage de la description  
     let descriptionProduit= value.description;
     let description = document.getElementById("description");
      description.innerHTML += descriptionProduit;
 }
+/////////////////////////CREATION DES OPTIONS/////////////////////////////
 
 const createOption=(i)=>{               //creation de la ligne option value i et id i
     let option=document.createElement("option")

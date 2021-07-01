@@ -1,8 +1,8 @@
 function monPanier() {
-    
+    ///////////////////////RECUPERATION DONNEES DANS LE LOCALSTORAGE////////////////////////////
     const panier= JSON.parse(localStorage.getItem("panier"))
-    console.log(panier==null)
-            if ( panier.length>0) {
+
+            if ( panier.length>0) {     //fonction a effectuer si le panier contient des articles
                 panierNonVide()
       
             for (let i = 0; i < panier.length; i++) {
