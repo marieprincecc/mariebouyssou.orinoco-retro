@@ -2,10 +2,10 @@ function monPanier() {
     ///////////////////////RECUPERATION DONNEES DANS LE LOCALSTORAGE////////////////////////////
     const panier= JSON.parse(localStorage.getItem("panier"))
 
-            if ( panier.length>0) {     //fonction a effectuer si le panier contient des articles
+            if ( panier.length>0) {     //fonction a effectuer, affichage si le panier contient des articles
                 panierNonVide()
       
-            for (let i = 0; i < panier.length; i++) {
+            for (let i = 0; i < panier.length; i++) {       //boucle d'iteration, sur chaque produit du panier
                 insereRow(i)
                 createImg(panier,i)
                 nomArticle(panier,i)
@@ -14,7 +14,9 @@ function monPanier() {
                 id(panier,i)
                 calcule(panier,i)
                 affichageQte(panier, i)
-                let btnSupUn= document.getElementById("moin"+i)
+
+        ////////////////////////////ajout suppression quantité article au click/////////////////:
+                let btnSupUn= document.getElementById("moin"+i)     //supression
                 btnSupUn.addEventListener("click",()=>{
                    let panier= JSON.parse(localStorage.getItem("panier"))
                    panier[i].qte --
@@ -22,7 +24,7 @@ function monPanier() {
                   localStorage.setItem("panier",JSON.stringify(Newpanier))
                     window.location.reload()
                 })
-                let btnPlus= document.getElementById("plus"+i)
+                let btnPlus= document.getElementById("plus"+i)      //ajout
                 btnPlus.addEventListener("click",()=>{
                    let panier= JSON.parse(localStorage.getItem("panier"))
                    panier[i].qte ++
@@ -32,10 +34,10 @@ function monPanier() {
             })
         }
             } else {
-                panierVide()
+                panierVide()        //fonction si panier vide ou absent
             }
     
-    
+    //////////////////calcule du total////////////////
             const reducer = (accumulator, currentValue) => accumulator + currentValue
             let prixTotale= prixTotalPanier.reduce(reducer)
             let affichageTotal = document.getElementById("total")
@@ -43,24 +45,24 @@ function monPanier() {
             localStorage.setItem("total",JSON.stringify(prixTotale))  
             
 }
-
+/////////////////////////////remplissage products avec id///////////////////
 const id=(panier, i)=>{
     let productsId = panier[i].id
     products.push(productsId)
 
 }
-
+//////////////calcule du sous total des produits selon la quantité///////////
 const calcule = (panier, i)=>{
     let qteArticle= panier[i].qte
     let prixArticle= panier[i].prix;
    
-console.log("qte"+qteArticle+"prix"+prixArticle);
     let sousTotal = qteArticle*prixArticle
    return sousTotal
     
     
 }
-const affichageQte=(panier,i)=>{
+/////////////AFFICHAGE DES DONNEES////////////////////////////////:
+const affichageQte=(panier,i)=>{        //////affichage quantité, calcul sous total et affichage de celui ci
     let qte= document.getElementById("qte"+i)
     let ssTotal= document.getElementById("sousTotal"+i)
    
@@ -72,7 +74,7 @@ const affichageQte=(panier,i)=>{
 
 }
     
-const total=(panier,i)=>{
+const total=(panier,i)=>{       ///////////calcule je le lance ce soir
 
     let sousTotal=calcule(panier,i)
 
