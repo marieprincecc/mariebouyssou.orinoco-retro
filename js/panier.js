@@ -314,7 +314,7 @@ const valider=($event)=>{
        
       fetch("http://localhost:3000/api/cameras/order",{
         method:"POST",
-        body: JSON.stringify({contact: contact,products: products}) ,
+        body: JSON.stringify({contact,products}) ,
         headers: {"Accept": "application/json","Content-type": "application/json"}
 
         
