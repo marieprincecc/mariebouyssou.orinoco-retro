@@ -314,8 +314,8 @@ const valider=($event)=>{
        
       fetch("http://localhost:3000/api/cameras/order",{
         method:"POST",
-        body:JSON.stringify({contact, products}),
-        headers: {'Accept': 'application/json',"Content-type": "application/json; charset=UTF-8"}
+        body: JSON.stringify({contact: contact,products: products}) ,
+        headers: {"Accept": "application/json","Content-type": "application/json"}
 
         
         })
@@ -325,7 +325,7 @@ const valider=($event)=>{
         
     })
     .then(function(value) {
-        console.log(value);
+        
         localStorage.setItem("recap",JSON.stringify(value))
     
     })
