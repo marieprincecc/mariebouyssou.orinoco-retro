@@ -298,7 +298,7 @@ const valider=($event)=>{
         formOK=true
     }
     if (!formOK) {
-       // console.log($event.target[0]);
+      
         $event.preventDefault() 
        
         alert("verifiez le formulaire")
@@ -320,14 +320,16 @@ const valider=($event)=>{
         
         })
     .then(function(res) {
-      
+      if(!res.ok){
+          throw Error(res);
+      }
            return res.json();      //convertie les données json
         
     })
     .then(function(value) {
         
         localStorage.setItem("recap",JSON.stringify(value))
-    
+        location.href="./confirmation.html"
     })
     .catch(function(err) {
         console.log("une erreure est survenue") 
