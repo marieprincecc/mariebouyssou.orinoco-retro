@@ -293,17 +293,22 @@ const valider=($event)=>{
         }
         
     let regex = /^[a-z0-9]+([_|\.|-]{1}[a-z0-9]+)*@[a-z0-9]+([_|\.|-]{1}[a-z0-9]+)*[\.]{1}[a-z]{2,6}$/
-
-    if (regex.exec(contact.email)==null) {
-        formOK=false
-    }else{
+    let texte= /^[a-zA-Z]+$/
+   
+    if (texte.test(contact.lastName)&& texte.test(contact.firstName)&& texte.test(contact.city)&& regex.test(contact.email)) {
+        
         formOK=true
+    
+   
+    }else{
+        formOK=false
     }
     if (!formOK) {
-      
-        $event.preventDefault() 
-       
+        $event.preventDefault()
         alert("verifiez le formulaire")
+        
+       
+        
         
     }
     if (panier.length==0) {
@@ -311,7 +316,10 @@ const valider=($event)=>{
         alert("votre panier est vide")
         
     }
-    else{
+    if (formOK && panier.length>0 ) {
+      
+    
+    
         console.log('cest ok');
        
       fetch("http://localhost:3000/api/cameras/order",{
