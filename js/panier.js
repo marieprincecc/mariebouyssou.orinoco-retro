@@ -74,7 +74,7 @@ const affichageQte=(panier,i)=>{        //////affichage quantité, calcul sous t
 
 }
     
-const total=(panier,i)=>{       ///////////calcule je le lance ce soir
+const total=(panier,i)=>{       ///////////calcule sous total et l'envoi dans le tableau prix total panier
 
     let sousTotal=calcule(panier,i)
 
