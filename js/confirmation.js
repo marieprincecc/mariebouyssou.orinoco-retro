@@ -1,3 +1,4 @@
+////////////////////RECUPERATION DES DONN2ES ET AFFICHAGE DES INFOS DE COMMANDE/////////////////////
 function confirmation() {
   
     const recap= JSON.parse(localStorage.getItem("recap"))

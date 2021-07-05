@@ -80,7 +80,6 @@ const total=(panier,i)=>{       ///////////calcule sous total et l'envoi dans le
 
     let prixArticleDansLePanier = sousTotal
     prixTotalPanier.push(prixArticleDansLePanier)
-    //products.push(prixArticleDansLePanier)
 }
 
 const panierVide=()=>{                                  //affichage panier vide
@@ -92,7 +91,7 @@ const panierVide=()=>{                                  //affichage panier vide
    
 }
 
-const panierNonVide=()=>{                                  //affichage panier vide
+const panierNonVide=()=>{                                  //affichage panier avec contenu
     let p = document.createElement("p")
     p.classList.add("h2", "text-center")
     p.innerHTML= "Contenu de votre panier"
@@ -137,7 +136,7 @@ const createColProduit=(i)=>{                       //creation div contenant tit
     return colProduit
 }
 
-const createListe=(i)=>{
+const createListe=(i)=>{                    // creer la liste contenant le prix unitaire et le nom de lappareil
     let liste= document.createElement("ul")
     liste.classList.add("list-unstyled")
     liste.id=("articlePrixNom"+i)
@@ -145,7 +144,7 @@ const createListe=(i)=>{
     return liste
 }
 
-const createTitre=(i)=>{                    //creation span titre
+const createTitre=(i)=>{                    //creation li titre
 
     let titreProduit=document.createElement("li")
     titreProduit.classList.add("h3")
@@ -154,7 +153,7 @@ const createTitre=(i)=>{                    //creation span titre
     return titreProduit
 }
 
-const createPrix=(i)=>{                     //creation span prix
+const createPrix=(i)=>{                     //creation li prix
 
     let prixProduit=document.createElement("li")
     prixProduit.classList.add("h4")
@@ -163,14 +162,14 @@ const createPrix=(i)=>{                     //creation span prix
     return prixProduit
 }
 
-const createColQte=(i)=>{
+const createColQte=(i)=>{           // creation div pour affichage de la quantité
     let colQte = document.createElement("div")
     colQte.classList.add("col-3","text-center")
     colQte.id=("colQte"+i)
     return colQte
 }
 
-const createListeSousTotal=(i)=>{
+const createListeSousTotal=(i)=>{           // creation liste pour sous total et quantité
     let listeSousTotal= document.createElement("ul")
     listeSousTotal.classList.add("list-unstyled")
     listeSousTotal.id=("qteSousTotal"+i)
@@ -178,7 +177,7 @@ const createListeSousTotal=(i)=>{
     return listeSousTotal
 }
 
-const createQte=(i)=>{                     //creation qte
+const createQte=(i)=>{                     //creation li qte
 
     let qte=document.createElement("li")
     qte.classList.add("h4")
@@ -187,7 +186,7 @@ const createQte=(i)=>{                     //creation qte
     return qte
 }
 
-const createSousTotal=(i)=>{                     //creation soustotal
+const createSousTotal=(i)=>{                     //creation li soustotal
 
     let sousTotal=document.createElement("li")
     sousTotal.classList.add("h4")
@@ -196,7 +195,7 @@ const createSousTotal=(i)=>{                     //creation soustotal
     return sousTotal
 }
 
-const btnSup = (i)=>{
+const btnSup = (i)=>{           //creation du bouton +
     let btnSup= document.createElement("button")
     btnSup.classList.add("btn","btn-light")
     btnSup.id=("plus"+i)
@@ -204,7 +203,7 @@ const btnSup = (i)=>{
     return btnSup
 }
 
-const btnMin = (i)=>{
+const btnMin = (i)=>{           //creation du bouton -
     let btnMin= document.createElement("button")
     btnMin.classList.add("btn","btn-light")
     btnMin.id=("moin"+i)
@@ -284,15 +283,15 @@ window.location.reload()
 
 const valider=($event)=>{
     const panier= JSON.parse(localStorage.getItem("panier"))
-    let contact={
+    let contact={           //object contact
         lastName: $event.target[3].value,
         firstName: $event.target[2].value,
         city: $event.target[6].value,
         address: $event.target[5].value,
         email: $event.target[4].value
         }
-        
-    let regex = /^[a-z0-9]+([_|\.|-]{1}[a-z0-9]+)*@[a-z0-9]+([_|\.|-]{1}[a-z0-9]+)*[\.]{1}[a-z]{2,6}$/
+        /////////////////////VERIFICATION DU FORMULAIRE///////////////////////////////////
+    let regex = /^[a-z0-9]+([_|\.|-]{1}[a-z0-9]+)*@[a-z0-9]+([_|\.|-]{1}[a-z0-9]+)*[\.]{1}[a-z]{2,6}$/      
     let texte= /^[a-zA-Z]+$/
    
     if (texte.test(contact.lastName)&& texte.test(contact.firstName)&& texte.test(contact.city)&& regex.test(contact.email)) {
@@ -318,7 +317,7 @@ const valider=($event)=>{
     }
     if (formOK && panier.length>0 ) {
       
-    
+    ////////////////////ENVOI AU SERVEUR///////////////////////////////////////
     
         console.log('cest ok');
        
@@ -337,7 +336,7 @@ const valider=($event)=>{
         
     })
     .then(function(value) {
-        
+        /////////////////////ENVOI AU LOCAL STORAGE//////////////////////////////////
         localStorage.setItem("recap",JSON.stringify(value))
         location.href="./confirmation.html"
     })
@@ -358,7 +357,7 @@ formulaire.addEventListener("submit", valider)
 
 
 
-//si le form est ok
+
 
 
 
