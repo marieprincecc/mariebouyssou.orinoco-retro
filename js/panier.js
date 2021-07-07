@@ -54,7 +54,7 @@ const id=(panier, i)=>{
 //////////////calcule du sous total des produits selon la quantité///////////
 const calcule = (panier, i)=>{
     let qteArticle= panier[i].qte
-    let prixArticle= panier[i].prix;
+    let prixArticle= panier[i].prix/100;
    
     let sousTotal = qteArticle*prixArticle
    return sousTotal
@@ -266,7 +266,7 @@ const nomArticle= (panier,i) =>{             //attribut le nom de la camera dans
 }
 
 const createPlacePrix= (panier,i) =>{              //affiche le prix  dans l'element #prix +i correspondant
-    let prixArticle= panier[i].prix;
+    let prixArticle= panier[i].prix/100;
     let prix = document.getElementById("prix"+i);
     prix.textContent = prixArticle +"€ "
 }

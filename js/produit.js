@@ -86,7 +86,7 @@ const produitNomSelect= (value) =>{             //affichage du nom
 }
     
 const produitPriceSelect= (value) =>{              //affichage du prix 
-    let prixProduit= value.price;
+    let prixProduit= value.price/100;
     let prix = document.getElementById("prix");
     prix.innerHTML += prixProduit+"€";
 }

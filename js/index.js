@@ -126,7 +126,7 @@ const produitNom= (value,i) =>{             //affichage du nom des articles
 }
 
 const produitPrice= (value,i) =>{              //affiche le prix  des articles
-    let prixProduit= value[i].price;
+    let prixProduit= value[i].price/100;
     let prix = document.getElementById("prix"+i);
     prix.innerHTML += prixProduit+"€";
 }
